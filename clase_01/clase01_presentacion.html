@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 1 - JavaScript Fundamentals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #001E60 0%, #373737 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: white;
+            margin: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            color: #001E60;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2.5em;
+            color: #535353;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 1.8em;
+            color: #001E60;
+            margin: 25px 0 15px 0;
+        }
+        
+        p, li {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #001E60;
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 20px 0;
+            overflow-x: auto;
+            width: 100%;
+            max-width: 800px;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            color: #f92672;
+            font-weight: bold;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px 0;
+        }
+        
+        .comparison-box {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid #001E60;
+        }
+        
+        .comparison-box h4 {
+            color: #535353;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .emphasis {
+            background: #fff3cd;
+            padding: 20px;
+            border-left: 5px solid #ffc107;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #001E60;
+            padding: 15px 25px;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        th {
+            background: #001E60;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .intro-icon {
+            font-size: 5em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <img src="./artech-logo.png" alt="" style="position: fixed; top: 50px; right: 50px; width: 150px; height: 30px;">
+
+    <div class="slide">
+      <div class="intro-icon">🚀</div>
+      <h1>Capacitación de Javascript</h1>
+      <p class="subtitle">Clase 1</p>
+      <p style="font-size: 1.2em; margin-top: 40px;">Bienvenidos al mundo de JavaScript</p>
+    </div>
+
+    <!-- SLIDE 2: HISTORIA DE JAVASCRIPT -->
+    <div class="slide">
+        <h2>📜 Historia de JavaScript</h2>
+        <div style="max-width: 900px;">
+            <h3>¿Quién lo creó?</h3>
+            <p><strong>Brendan Eich</strong> en 1995, mientras trabajaba en Netscape Communications.</p>
+
+            <h3>¿Por qué surgió?</h3>
+            <ul>
+                <li>A mediados de los 90s, las páginas web eran completamente estáticas</li>
+                <li>No había forma de hacer que respondieran a las acciones del usuario sin recargar la página</li>
+                <li>Netscape necesitaba un lenguaje simple que pudiera correr en el navegador</li>
+                <li>Se creó en solo <strong>10 días</strong> (Mayo de 1995)</li>
+            </ul>
+
+            <h3>¿Qué problema resolvió?</h3>
+            <ul>
+                <li>✨ <strong>Interactividad:</strong> Páginas que responden a clicks, movimientos del mouse, formularios dinámicos</li>
+                <li>⚡ <strong>Validación instantánea:</strong> Sin necesidad de enviar datos al servidor para verificarlos</li>
+                <li>🎨 <strong>Dinamismo visual:</strong> Cambiar contenido y estilos sin recargar la página</li>
+                <li>🌐 <strong>Web moderna:</strong> Hizo posible aplicaciones web complejas (Gmail, Google Maps, etc.)</li>
+            </ul>
+        </div>
+        <div class="emphasis" style="margin-top: 30px;">
+            <strong>Dato curioso:</strong> Originalmente se llamó "Mocha", luego "LiveScript" y finalmente "JavaScript" por razones de marketing (aprovechando la popularidad de Java, aunque son lenguajes muy diferentes)
+        </div>
+    </div>
+
+    <!-- SLIDE 3: ¿QUÉ VAMOS A VER? -->
+    <div class="slide">
+        <h2>¿Qué vamos a ver en estas 7 clases?</h2>
+        <ul>
+            <li><strong>Clases 1-2:</strong> JavaScript puro (sintaxis, lógica, estructuras de datos)</li>
+            <li><strong>Clases 3-4:</strong> HTML, CSS y manipulación del DOM (interfaces visuales)</li>
+            <li><strong>Clases 5-6:</strong> Proyecto integrador (aplicación web real)</li>
+            <li><strong>Clase 7:</strong> Node.js, TypeScript y conexión con SAP</li>
+        </ul>
+        <div class="emphasis">
+            <strong>Objetivo:</strong> Que puedan crear aplicaciones web interactivas y entiendan cómo JS se usa en el ecosistema SAP moderno
+        </div>
+    </div>
+
+    <!-- SLIDE 3: ¿POR QUÉ JAVASCRIPT? -->
+    <div class="slide">
+        <h2>¿Por qué JavaScript?</h2>
+        <ul>
+            <li>El lenguaje más usado del mundo (2024)</li>
+            <li>Corre en navegadores (frontend)</li>
+            <li>Corre en servidores (Node.js - backend)</li>
+            <li>Aplicaciones móviles (React Native)</li>
+            <li>Desktop apps (Electron)</li>
+            <li><strong>SAP Fiori y UI5 usan JavaScript/TypeScript</strong></li>
+        </ul>
+        <p style="margin-top: 40px; font-size: 1.4em; color: #001E60;">
+            <strong>Una vez que sepan JS, pueden hacer casi cualquier cosa</strong>
+        </p>
+    </div>
+
+    <!-- SLIDE 4: VARIABLES -->
+    <div class="slide">
+        <h2>Variables: let, const, var</h2>
+        <div class="code-block">
+            // Forma moderna (usar estas)
+            let edad = 25;           // Variable que puede cambiar
+            const nombre = "Ana";    // Constante (no puede cambiar)
+
+            // Forma antigua (evitar)
+            var ciudad = "Buenos Aires";  // No la usen, tiene problemas
+        </div>
+        <div class="comparison">
+            <div class="comparison-box">
+                <h4>let</h4>
+                <ul style="font-size: 0.9em;">
+                    <li>Puede cambiar de valor</li>
+                    <li>Tiene scope de bloque</li>
+                </ul>
+            </div>
+            <div class="comparison-box">
+                <h4>const</h4>
+                <ul style="font-size: 0.9em;">
+                    <li>NO puede cambiar de valor</li>
+                    <li>Usar por defecto (más seguro)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: TIPOS DE DATOS -->
+    <div class="slide">
+        <h2>Tipos de Datos</h2>
+        <table>
+            <tr>
+                <th>Tipo</th>
+                <th>Ejemplo</th>
+                <th>Descripción</th>
+            </tr>
+            <tr>
+                <td><strong>String</strong></td>
+                <td>"Hola mundo"</td>
+                <td>Texto</td>
+            </tr>
+            <tr>
+                <td><strong>Number</strong></td>
+                <td>42, 3.14</td>
+                <td>Números (enteros y decimales)</td>
+            </tr>
+            <tr>
+                <td><strong>Boolean</strong></td>
+                <td>true, false</td>
+                <td>Verdadero o falso</td>
+            </tr>
+            <tr>
+                <td><strong>Undefined</strong></td>
+                <td>undefined</td>
+                <td>Variable sin valor asignado</td>
+            </tr>
+            <tr>
+                <td><strong>Null</strong></td>
+                <td>null</td>
+                <td>Ausencia intencional de valor</td>
+            </tr>
+            <tr>
+                <td><strong>Object</strong></td>
+                <td>{nombre: "Juan"}</td>
+                <td>Estructura de datos compleja</td>
+            </tr>
+            <tr>
+                <td><strong>Array</strong></td>
+                <td>[1, 2, 3]</td>
+                <td>Lista de valores</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SLIDE 6: TEMPLATE LITERALS -->
+    <div class="slide">
+        <h2>Template Literals (String moderno)</h2>
+        <div class="comparison">
+            <div class="comparison-box">
+                <h4>❌ Forma antigua</h4>
+                <div class="code-block" style="font-size: 0.9em;">
+let nombre = "Carlos";
+let edad = 30;
+let mensaje = "Hola " + nombre + 
+              ", tienes " + edad + 
+              " años";
+                </div>
+            </div>
+            <div class="comparison-box">
+                <h4>✅ Forma moderna</h4>
+                <div class="code-block" style="font-size: 0.9em;">
+let nombre = "Carlos";
+let edad = 30;
+let mensaje = `Hola ${nombre}, 
+tienes ${edad} años`;
+                </div>
+            </div>
+        </div>
+        <div class="emphasis">
+            <strong>Tip:</strong> Usen backticks (`) y ${} para interpolar variables
+        </div>
+    </div>
+
+    <!-- SLIDE 7: OPERADORES -->
+    <div class="slide">
+        <h2>Operadores</h2>
+        <h3>Aritméticos</h3>
+        <div class="code-block">
+let suma = 10 + 5;        // 15
+let resta = 10 - 5;       // 5
+let multi = 10 * 5;       // 50
+let div = 10 / 5;         // 2
+let modulo = 10 % 3;      // 1 (resto de la división)
+let potencia = 2 ** 3;    // 8 (2 elevado a 3)
+        </div>
+        <h3>Comparación</h3>
+        <div class="code-block">
+5 == "5"    // true  (compara valor, NO tipo)
+5 === "5"   // false (compara valor Y tipo) ⭐ USAR ESTE
+5 != "5"    // false
+5 !== "5"   // true ⭐ USAR ESTE
+        </div>
+    </div>
+
+    <!-- SLIDE 8: TRUTHY/FALSY -->
+    <div class="slide">
+        <h2>Truthy & Falsy Values</h2>
+        <p>En JavaScript, algunos valores se consideran "falsos" en contextos booleanos:</p>
+        <div class="comparison">
+            <div class="comparison-box">
+                <h4>❌ Falsy (se evalúan como false)</h4>
+                <ul style="font-size: 0.9em;">
+                    <li>false</li>
+                    <li>0</li>
+                    <li>"" (string vacío)</li>
+                    <li>null</li>
+                    <li>undefined</li>
+                    <li>NaN</li>
+                </ul>
+            </div>
+            <div class="comparison-box">
+                <h4>✅ Truthy (todo lo demás)</h4>
+                <ul style="font-size: 0.9em;">
+                    <li>true</li>
+                    <li>Cualquier número (excepto 0)</li>
+                    <li>Cualquier string (excepto "")</li>
+                    <li>Arrays y objetos</li>
+                </ul>
+            </div>
+        </div>
+        <div class="code-block">
+if ("Hola") {  // truthy
+    console.log("Esto se ejecuta");
+}
+if (0) {  // falsy
+    console.log("Esto NO se ejecuta");
+}
+        </div>
+    </div>
+
+    <!-- SLIDE 9: IF/ELSE -->
+    <div class="slide">
+        <h2>Estructuras de Control: if/else</h2>
+        <div class="code-block">
+let edad = 20;
+
+if (edad >= 18) {
+    console.log("Eres mayor de edad");
+} else {
+    console.log("Eres menor de edad");
+}
+
+// Operador ternario (forma corta)
+let mensaje = edad >= 18 ? "Mayor" : "Menor";
+        </div>
+        <div class="comparison">
+            <div class="comparison-box">
+                <h4>Python</h4>
+                <div class="code-block" style="font-size: 0.8em;">
+if edad >= 18:
+    print("Mayor")
+else:
+    print("Menor")
+                </div>
+            </div>
+            <div class="comparison-box">
+                <h4>JavaScript</h4>
+                <div class="code-block" style="font-size: 0.8em;">
+if (edad >= 18) {
+    console.log("Mayor");
+} else {
+    console.log("Menor");
+}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: SWITCH -->
+    <div class="slide">
+        <h2>Switch Statement</h2>
+        <div class="code-block">
+let dia = 3;
+let nombreDia;
+
+switch(dia) {
+    case 1:
+        nombreDia = "Lunes";
+        break;
+    case 2:
+        nombreDia = "Martes";
+        break;
+    case 3:
+        nombreDia = "Miércoles";
+        break;
+    default:
+        nombreDia = "Día inválido";
+}
+
+console.log(nombreDia); // "Miércoles"
+        </div>
+        <div class="emphasis">
+            <strong>¡Guarda!</strong> No olviden el <code>break</code>, o va a seguir ejecutando los casos siguientes
+        </div>
+    </div>
+
+    <!-- SLIDE 11: LOOPS -->
+    <div class="slide">
+        <h2>Loops (Bucles)</h2>
+        <h3>For Loop</h3>
+        <div class="code-block">
+for (let i = 0; i < 5; i++) {
+    console.log(i);  // 0, 1, 2, 3, 4
+}
+        </div>
+        <h3>While Loop</h3>
+        <div class="code-block">
+let contador = 0;
+while (contador < 5) {
+    console.log(contador);
+    contador++;
+}
+        </div>
+        <h3>Do-While Loop</h3>
+        <div class="code-block">
+let num = 0;
+do {
+    console.log(num);
+    num++;
+} while (num < 5);
+        </div>
+    </div>
+
+    <!-- SLIDE 12: FUNCIONES -->
+    <div class="slide">
+        <h2>Funciones</h2>
+        <h3>Declaración tradicional</h3>
+        <div class="code-block">
+function saludar(nombre) {
+    return `Hola ${nombre}!`;
+}
+
+let mensaje = saludar("María");  // "Hola María!"
+        </div>
+        <h3>Arrow Function (forma moderna) ⭐</h3>
+        <div class="code-block">
+const saludar = (nombre) => {
+    return `Hola ${nombre}!`;
+}
+
+// Forma corta (cuando es una sola línea)
+const saludar = (nombre) => `Hola ${nombre}!`;
+        </div>
+    </div>
+
+    <!-- SLIDE 13: SCOPE -->
+    <div class="slide">
+        <h2>Scope (Ámbito)</h2>
+        <div class="code-block">
+let global = "Soy global";
+
+function ejemplo() {
+    let local = "Soy local";
+    console.log(global);  // ✅ Puedo acceder
+    console.log(local);   // ✅ Puedo acceder
+}
+
+console.log(global);  // ✅ Puedo acceder
+console.log(local);   // ❌ ERROR: local no está definida aquí
+        </div>
+        <div class="emphasis">
+            <strong>Regla de oro:</strong> Las variables declaradas dentro de una función solo existen dentro de esa función
+        </div>
+    </div>
+
+    <!-- SLIDE 14: PRÁCTICA -->
+    <div class="slide">
+        <h2>🎯 A practicar :D!</h2>
+        <p style="font-size: 1.4em; margin: 30px 0;">Abran la consola del navegador:</p>
+        <ul style="font-size: 1.2em;">
+            <li><strong>Chrome/Edge:</strong> F12 o Click derecho → Inspeccionar → Console</li>
+            <li><strong>Firefox:</strong> F12 → Console</li>
+        </ul>
+        <div class="emphasis" style="margin-top: 40px;">
+            <strong>Ejercicios en:</strong> clase1_ejercicios.html
+        </div>
+    </div>
+
+    <!-- SLIDE 15: RECAP -->
+    <div class="slide">
+        <h2>📝 Recap de la Clase 1</h2>
+        <ul>
+            <li>Variables: <strong>let</strong> y <strong>const</strong></li>
+            <li>Tipos de datos: string, number, boolean, null, undefined</li>
+            <li>Template literals con backticks</li>
+            <li>Operadores: aritméticos, comparación (=== y !==)</li>
+            <li>Truthy/Falsy values</li>
+            <li>Estructuras: if/else, switch</li>
+            <li>Loops: for, while, do-while</li>
+            <li>Funciones: tradicionales y arrow functions</li>
+            <li>Scope: global vs local</li>
+        </ul>
+    </div>
+
+    <div class="navigation">
+        Atrás ← → Adelante
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.style.display = 'none');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].style.display = 'flex';
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') showSlide(currentSlide + 1);
+            if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+        });
+        
+        showSlide(0);
+    </script>
+</body>
+</html>

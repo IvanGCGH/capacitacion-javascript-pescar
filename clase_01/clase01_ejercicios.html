@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clase 1 - Ejercicios Prácticos</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #001E60 0%, #6998ff 100%);
+        padding: 40px;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        color: #001E60;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #666;
+        font-size: 1.2em;
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        color: #001E60;
+        font-size: 1.8em;
+        margin: 30px 0 15px 0;
+        padding-left: 10px;
+        border-left: 5px solid #001E60;
+      }
+
+      h3 {
+        color: #001E60;
+        font-size: 1.4em;
+        margin: 25px 0 10px 0;
+      }
+
+      .exercise {
+        background: #f8f9fa;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        border-left: 5px solid #001E60;
+      }
+
+      .exercise p {
+        margin: 10px 0;
+        font-size: 1.1em;
+      }
+
+      .difficulty {
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .easy {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      .medium {
+        background: #fff3cd;
+        color: #856404;
+      }
+
+      .hard {
+        background: #f8d7da;
+        color: #721c24;
+      }
+
+      .code-example {
+        background: #2d2d2d;
+        color: #f8f8f2;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 0.95em;
+        margin: 15px 0;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+
+      .hint {
+        background: #e7f3ff;
+        border-left: 4px solid #2196f3;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .hint strong {
+        color: #2196f3;
+      }
+
+      .instruction {
+        background: #fff3cd;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        border-left: 5px solid #ffc107;
+      }
+
+      .instruction h3 {
+        color: #856404;
+        margin-top: 0;
+      }
+
+      ol,
+      ul {
+        margin-left: 25px;
+        margin-top: 10px;
+      }
+
+      li {
+        margin: 8px 0;
+        font-size: 1.05em;
+      }
+
+      .solution-toggle {
+        background: #001E60;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        margin-top: 10px;
+        transition: background 0.3s;
+      }
+
+      .solution-toggle:hover {
+        background: #5568d3;
+      }
+
+      .solution {
+        display: none;
+        background: #2d2d2d;
+        color: #f8f8f2;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-family: "Courier New", monospace;
+        font-size: 0.95em;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+
+      .success {
+        background: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+        border-left: 5px solid #28a745;
+      }
+
+      .artech-logo-container {
+        text-align: end;
+        margin-bottom: 20px;
+      }
+
+      .artech-logo-container img {
+        width: 150px;
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="artech-logo-container">
+        <img src="./artech-logo.png" alt="Logo de ARTECH">
+      </div>
+
+      <h1>🎯 Ejercicios prácticos</h1>
+      <p class="subtitle">Clase 1</p>
+
+      <div class="instruction">
+        <h3>📋 Instrucciones</h3>
+        <ol>
+          <li>Abrí la consola del navegador (F12 → Console)</li>
+          <li>Escribí tu código directamente en la consola</li>
+          <li>
+            O crea un archivo <code>ejercicios.js</code> y enlazalo a un HTML
+          </li>
+          <li>Intentá resolver cada ejercicio antes de ver la solución</li>
+        </ol>
+      </div>
+
+      <h2>🌟 Ejercicios Básicos (Bloque 1)</h2>
+
+      <!-- EJERCICIO 1 -->
+      <div class="exercise">
+        <span class="difficulty easy">Fácil</span>
+        <h3>Ejercicio 1: Variables y Template Literals</h3>
+        <p>
+          Creá variables con tu nombre, edad y ciudad. Después, creá un mensaje
+          usando template literals que diga: "Mi nombre es [nombre], tengo
+          [edad] años y vivo en [ciudad]".
+        </p>
+
+        <div class="hint">
+          <strong>💡 Pista:</strong> Usa <code>const</code> para las variables y
+          backticks (`) para el template literal.
+        </div>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol1')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol1">
+          const nombre = "Carlos"; const edad = 25; const ciudad = "Buenos
+          Aires"; const mensaje = `Mi nombre es ${nombre}, tengo ${edad} años y
+          vivo en ${ciudad}`; console.log(mensaje);
+        </div>
+      </div>
+
+      <!-- EJERCICIO 2 -->
+      <div class="exercise">
+        <span class="difficulty easy">Fácil</span>
+        <h3>Ejercicio 2: Operadores Aritméticos</h3>
+        <p>
+          Creá dos variables con números. Calculá y mostrá en consola: la suma,
+          resta, multiplicación, división y el módulo de esos números.
+        </p>
+
+        <div class="hint">
+          <strong>💡 Pista:</strong> El operador módulo (%) te da el resto de
+          una división.
+        </div>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol2')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol2">
+          const num1 = 15; const num2 = 4; console.log("Suma:", num1 + num2); //
+          19 console.log("Resta:", num1 - num2); // 11
+          console.log("Multiplicación:", num1 * num2); // 60
+          console.log("División:", num1 / num2); // 3.75 console.log("Módulo:",
+          num1 % num2); // 3
+        </div>
+      </div>
+
+      <!-- EJERCICIO 3 -->
+      <div class="exercise">
+        <span class="difficulty easy">Fácil</span>
+        <h3>Ejercicio 3: Comparaciones</h3>
+        <p>
+          Probá las siguientes comparaciones y explicá por qué dan ese
+          resultado:
+        </p>
+        <ul>
+          <li><code>10 == "10"</code></li>
+          <li><code>10 === "10"</code></li>
+          <li><code>true == 1</code></li>
+          <li><code>true === 1</code></li>
+        </ul>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol3')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol3">
+          console.log(10 == "10"); // true - compara solo valor (hace
+          conversión) console.log(10 === "10"); // false - compara valor Y tipo
+          console.log(true == 1); // true - true se convierte a 1
+          console.log(true === 1); // false - son tipos diferentes // REGLA:
+          Siempre usar === y !== para evitar conversiones inesperadas
+        </div>
+      </div>
+
+      <!-- EJERCICIO 4 -->
+      <div class="exercise">
+        <span class="difficulty medium">Medio</span>
+        <h3>Ejercicio 4: Mayor de Edad</h3>
+        <p>
+          Creá una función llamada <code>esMayorDeEdad</code> que reciba una
+          edad y retorne <code>true</code> si es mayor o igual a 18, y
+          <code>false</code> en caso contrario. Probala con diferentes valores.
+        </p>
+
+        <div class="hint">
+          <strong>💡 Pista:</strong> Podés usar una arrow function y un
+          operador ternario para hacerlo en una línea.
+        </div>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol4')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol4">
+          // Forma tradicional function esMayorDeEdad(edad) { return edad >= 18;
+          } // Forma con arrow function (más corta) const esMayorDeEdad = edad
+          => edad >= 18; // Pruebas console.log(esMayorDeEdad(20)); // true
+          console.log(esMayorDeEdad(15)); // false
+          console.log(esMayorDeEdad(18)); // true
+        </div>
+      </div>
+
+      <!-- EJERCICIO 5 -->
+      <div class="exercise">
+        <span class="difficulty medium">Medio</span>
+        <h3>Ejercicio 5: Par o Impar</h3>
+        <p>
+          Creá una función que reciba un número y retorne "Par" si el número es
+          par, o "Impar" si es impar.
+        </p>
+
+        <div class="hint">
+          <strong>💡 Pista:</strong> Un número es par si el resto de dividirlo
+          por 2 es 0 (usa el operador %).
+        </div>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol5')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol5">
+          const parOImpar = numero => { if (numero % 2 === 0) { return "Par"; }
+          else { return "Impar"; } } // Forma más corta con ternario const
+          parOImpar = numero => numero % 2 === 0 ? "Par" : "Impar"; // Pruebas
+          console.log(parOImpar(10)); // "Par" console.log(parOImpar(7)); //
+          "Impar" console.log(parOImpar(0)); // "Par"
+        </div>
+      </div>
+
+      <h2>🔥 Ejercicios Intermedios (Bloque 2)</h2>
+
+      <!-- EJERCICIO 6 -->
+      <div class="exercise">
+        <span class="difficulty medium">Medio</span>
+        <h3>Ejercicio 6: Calificación</h3>
+        <p>Creá una función que reciba una nota (0-100) y retorne:</p>
+        <ul>
+          <li>"Excelente" si la nota es >= 90</li>
+          <li>"Muy bien" si está entre 75 y 89</li>
+          <li>"Bien" si está entre 60 y 74</li>
+          <li>"Aprobado" si está entre 50 y 59</li>
+          <li>"Reprobado" si es menor a 50</li>
+        </ul>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol6')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol6">
+          function obtenerCalificacion(nota) { if (nota >= 90) { return
+          "Excelente"; } else if (nota >= 75) { return "Muy bien"; } else if
+          (nota >= 60) { return "Bien"; } else if (nota >= 50) { return
+          "Aprobado"; } else { return "Reprobado"; } } // Pruebas
+          console.log(obtenerCalificacion(95)); // "Excelente"
+          console.log(obtenerCalificacion(80)); // "Muy bien"
+          console.log(obtenerCalificacion(65)); // "Bien"
+          console.log(obtenerCalificacion(55)); // "Aprobado"
+          console.log(obtenerCalificacion(30)); // "Reprobado"
+        </div>
+      </div>
+
+      <!-- EJERCICIO 7 -->
+      <div class="exercise">
+        <span class="difficulty medium">Medio</span>
+        <h3>Ejercicio 7: Tabla de Multiplicar</h3>
+        <p>
+          Creá una función que reciba un número y muestre en consola su tabla de
+          multiplicar del 1 al 10.
+        </p>
+
+        <div class="hint">
+          <strong>💡 Pista:</strong> Usá un loop for y template literals para
+          mostrar "3 x 1 = 3", etc.
+        </div>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol7')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol7">
+          function tablaDeMultiplicar(numero) { console.log(`Tabla del
+          ${numero}:`); for (let i = 1; i <= 10; i++) { console.log(`${numero} x
+          ${i} = ${numero * i}`); } } // Prueba tablaDeMultiplicar(7);
+        </div>
+      </div>
+
+      <!-- EJERCICIO 8 -->
+      <div class="exercise">
+        <span class="difficulty medium">Medio</span>
+        <h3>Ejercicio 8: Suma de Números</h3>
+        <p>
+          Creá una función que sume todos los números del 1 hasta N (donde N es
+          el parámetro que recibe la función).
+        </p>
+
+        <div class="hint">
+          <strong>💡 Pista:</strong> Usa una variable acumuladora y un loop.
+        </div>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol8')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol8">
+          function sumaHastaN(n) { let suma = 0; for (let i = 1; i <= n; i++) {
+          suma += i; // suma = suma + i } return suma; } // Pruebas
+          console.log(sumaHastaN(5)); // 15 (1+2+3+4+5)
+          console.log(sumaHastaN(10)); // 55 console.log(sumaHastaN(100)); //
+          5050 // Dato curioso: existe una fórmula matemática para esto const
+          sumaHastaN = n => (n * (n + 1)) / 2;
+        </div>
+      </div>
+
+      <!-- EJERCICIO 9 -->
+      <div class="exercise">
+        <span class="difficulty hard">Difícil</span>
+        <h3>Ejercicio 9: Número Primo</h3>
+        <p>
+          Creá una función que determine si un número es primo o no. Un número
+          primo solamente es divisible por 1 y por sí mismo.
+        </p>
+
+        <div class="hint">
+          <strong>💡 Pista:</strong> Verificá si el número es divisible por
+          algún número entre 2 y la mitad del número.
+        </div>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol9')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol9">
+          function esPrimo(numero) { // Casos especiales if (numero <= 1) return
+          false; if (numero === 2) return true; // Verificar si es divisible por
+          algún número entre 2 y numero/2 for (let i = 2; i <= numero / 2; i++)
+          { if (numero % i === 0) { return false; // Encontramos un divisor, no
+          es primo } } return true; // No encontramos divisores, es primo } //
+          Pruebas console.log(esPrimo(7)); // true console.log(esPrimo(10)); //
+          false console.log(esPrimo(17)); // true console.log(esPrimo(1)); //
+          false console.log(esPrimo(2)); // true
+        </div>
+      </div>
+
+      <!-- EJERCICIO 10 -->
+      <div class="exercise">
+        <span class="difficulty hard">Difícil</span>
+        <h3>Ejercicio 10: FizzBuzz</h3>
+        <p>
+          Escribí una función que imprima los números del 1 al 100, pero:
+        </p>
+        <ul>
+          <li>Para múltiplos de 3, imprime "Fizz" en lugar del número</li>
+          <li>Para múltiplos de 5, imprime "Buzz"</li>
+          <li>
+            Para números que son múltiplos de ambos 3 y 5, imprime "FizzBuzz"
+          </li>
+        </ul>
+
+        <div class="hint">
+          <strong>💡 Pista:</strong> Verificá primero si es múltiplo de 3 Y 5
+          (usa el operador %).
+        </div>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol10')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol10">
+          function fizzBuzz() {
+            for (let i = 1; i <= 100; i++) { // IMPORTANTE: Verificar primero múltiplos de 3 Y 5 
+              if (i % 3 === 0 && i % 5 === 0) {
+                console.log("FizzBuzz");
+              } else if (i % 3 === 0) {
+                console.log("Fizz");
+              } else if (i % 5 === 0) {
+                console.log("Buzz");
+              } else {
+                console.log(i);
+              }
+            }
+          }
+          
+          // Ejecutar fizzBuzz(); // Versión más elegante con ternarios
+
+          function fizzBuzz() {
+            for (let i = 1; i <= 100; i++) {
+              const resultado = (i % 3 === 0 ? "Fizz" : "") + (i % 5 === 0 ? "Buzz" : "") || i; console.log(resultado);
+            }
+          }
+        </div>
+      </div>
+
+      <h2>🚀 Ejercicios de Integración</h2>
+
+      <!-- EJERCICIO 11 -->
+      <div class="exercise">
+        <span class="difficulty hard">Difícil</span>
+        <h3>Ejercicio 11: Calculadora Completa</h3>
+        <p>
+          Creá una función calculadora que reciba dos números y una operación
+          (como string: "sumar", "restar", "multiplicar", "dividir") y retorne
+          el resultado. Tiene que manejar el caso de división por cero.
+        </p>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol11')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol11">
+          function calculadora(num1, num2, operacion) {
+          switch(operacion.toLowerCase()) { case "sumar": return num1 + num2;
+          case "restar": return num1 - num2; case "multiplicar": return num1 *
+          num2; case "dividir": if (num2 === 0) { return "Error: No se puede
+          dividir por cero"; } return num1 / num2; default: return "Operación
+          inválida"; } } // Pruebas console.log(calculadora(10, 5, "sumar")); //
+          15 console.log(calculadora(10, 5, "restar")); // 5
+          console.log(calculadora(10, 5, "multiplicar")); // 50
+          console.log(calculadora(10, 5, "dividir")); // 2
+          console.log(calculadora(10, 0, "dividir")); // "Error: No se puede
+          dividir por cero" console.log(calculadora(10, 5, "SUMAR")); // 15
+          (toLowerCase maneja mayúsculas)
+        </div>
+      </div>
+
+      <!-- EJERCICIO 12 -->
+      <div class="exercise">
+        <span class="difficulty hard">Difícil</span>
+        <h3>Ejercicio 12: Contador de Vocales</h3>
+        <p>
+          Creá una función que reciba un string y cuente cuántas vocales tiene
+          (a, e, i, o, u). Tiene que funcionar con mayúsculas y minúsculas.
+        </p>
+
+        <div class="hint">
+          <strong>💡 Pista:</strong> Convertí el string a minúsculas primero
+          con <code>.toLowerCase()</code>.
+        </div>
+
+        <button class="solution-toggle" onclick="toggleSolution('sol12')">
+          Ver Solución
+        </button>
+        <div class="solution" id="sol12">
+          function contarVocales(texto) { const vocales = "aeiouáéíóú"; let
+          contador = 0; const textoMinusculas = texto.toLowerCase(); for (let i
+          = 0; i < textoMinusculas.length; i++) { if
+          (vocales.includes(textoMinusculas[i])) { contador++; } } return
+          contador; } // Pruebas console.log(contarVocales("Hola Mundo")); // 4
+          console.log(contarVocales("JavaScript")); // 3
+          console.log(contarVocales("Programación")); // 5
+          console.log(contarVocales("AEIOU")); // 5
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleSolution(id) {
+        const solution = document.getElementById(id);
+        if (
+          solution.style.display === "none" ||
+          solution.style.display === ""
+        ) {
+          solution.style.display = "block";
+        } else {
+          solution.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
