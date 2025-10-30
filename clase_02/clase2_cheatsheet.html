@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Cheatsheet - Clase 2</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f5f5f5;
+        padding: 30px;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #001e60;
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        border-bottom: 4px solid #001e60;
+        padding-bottom: 15px;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #666;
+        font-size: 1.2em;
+        margin-bottom: 30px;
+      }
+
+      .section {
+        margin: 30px 0;
+        page-break-inside: avoid;
+      }
+
+      h2 {
+        background: #001e60;
+        color: white;
+        padding: 12px 20px;
+        font-size: 1.6em;
+        margin-bottom: 15px;
+        border-radius: 5px;
+      }
+
+      h3 {
+        color: #764ba2;
+        font-size: 1.3em;
+        margin: 20px 0 10px 0;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 5px;
+      }
+
+      .code {
+        background: #2d2d2d;
+        color: #f8f8f2;
+        padding: 15px;
+        border-radius: 5px;
+        font-family: "Courier New", monospace;
+        font-size: 0.9em;
+        margin: 10px 0;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+
+      .two-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 15px 0;
+      }
+
+      .column {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #001e60;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        font-size: 0.95em;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      th {
+        background: #001e60;
+        color: white;
+        font-weight: bold;
+      }
+
+      tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .important {
+        background: #fff3cd;
+        border-left: 5px solid #ffc107;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .tip {
+        background: #d4edda;
+        border-left: 5px solid #28a745;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      ul {
+        margin-left: 25px;
+        margin-top: 10px;
+      }
+
+      li {
+        margin: 5px 0;
+      }
+
+      .inline-code {
+        background: #e9ecef;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+        font-size: 0.9em;
+      }
+
+      .artech-logo-container {
+        text-align: end;
+      }
+
+      .artech-logo-container img {
+        width: 150px;
+        height: 30px;
+      }
+
+      @media print {
+        body {
+          background: white;
+          padding: 0;
+        }
+        .container {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="artech-logo-container">
+        <img src="./artech-logo.png" alt="Logo de ARTECH" />
+      </div>
+
+      <h1>📚 JavaScript Cheatsheet</h1>
+      <p class="subtitle">
+        Clase 2 - Arrays, Objetos y Métodos - Referencia Rápida
+      </p>
+
+      <!-- ARRAYS BÁSICOS -->
+      <div class="section">
+        <h2>Arrays (Arreglos)</h2>
+
+        <h3>Creación</h3>
+        <div class="code">
+          const numeros = [1, 2, 3, 4, 5]; const frutas = ["manzana", "banana",
+          "naranja"]; const mixto = [1, "texto", true, { nombre: "Ana" }]; const
+          vacio = [];
+        </div>
+
+        <h3>Acceso a Elementos</h3>
+        <div class="code">
+          const arr = [10, 20, 30, 40]; arr[0] // 10 (primer elemento)
+          arr[arr.length - 1] // 40 (último elemento) arr.length // 4 (cantidad
+          de elementos) // Modificar arr[1] = 99; // [10, 99, 30, 40]
+        </div>
+
+        <h3>Métodos Básicos</h3>
+        <table>
+          <tr>
+            <th>Método</th>
+            <th>Descripción</th>
+            <th>Ejemplo</th>
+            <th>Modifica</th>
+          </tr>
+          <tr>
+            <td><code>push()</code></td>
+            <td>Agrega al final</td>
+            <td><code>arr.push(5)</code></td>
+            <td>✅ Sí</td>
+          </tr>
+          <tr>
+            <td><code>pop()</code></td>
+            <td>Elimina el último</td>
+            <td><code>arr.pop()</code></td>
+            <td>✅ Sí</td>
+          </tr>
+          <tr>
+            <td><code>unshift()</code></td>
+            <td>Agrega al inicio</td>
+            <td><code>arr.unshift(0)</code></td>
+            <td>✅ Sí</td>
+          </tr>
+          <tr>
+            <td><code>shift()</code></td>
+            <td>Elimina el primero</td>
+            <td><code>arr.shift()</code></td>
+            <td>✅ Sí</td>
+          </tr>
+          <tr>
+            <td><code>slice()</code></td>
+            <td>Copia una porción</td>
+            <td><code>arr.slice(1, 3)</code></td>
+            <td>❌ No</td>
+          </tr>
+          <tr>
+            <td><code>splice()</code></td>
+            <td>Elimina/inserta</td>
+            <td><code>arr.splice(2, 1)</code></td>
+            <td>✅ Sí</td>
+          </tr>
+        </table>
+
+        <div class="code">
+          const arr = [1, 2, 3]; arr.push(4); // [1, 2, 3, 4] arr.pop(); // [1,
+          2, 3] (retorna 4) arr.unshift(0); // [0, 1, 2, 3] arr.shift(); // [1,
+          2, 3] (retorna 0) const copia = arr.slice(1, 3); // [2, 3] (original
+          sin cambios) arr.splice(1, 1); // [1, 3] (eliminó elemento en índice
+          1)
+        </div>
+      </div>
+
+      <!-- MÉTODOS MODERNOS -->
+      <div class="section">
+        <h2>Métodos Modernos de Arrays</h2>
+
+        <h3>forEach - Iterar</h3>
+        <div class="code">
+          const numeros = [1, 2, 3, 4, 5]; numeros.forEach((num) => {
+          console.log(num * 2); }); // Imprime: 2, 4, 6, 8, 10 // Con índice
+          numeros.forEach((num, index) => { console.log(`${index}: ${num}`); });
+        </div>
+        <div class="important">
+          <strong>Nota:</strong> forEach NO retorna nada, solo ejecuta código
+          para cada elemento.
+        </div>
+
+        <h3>map - Transformar</h3>
+        <div class="code">
+          const numeros = [1, 2, 3, 4, 5]; // map crea un NUEVO array const
+          duplicados = numeros.map((num) => num * 2); console.log(duplicados);
+          // [2, 4, 6, 8, 10] console.log(numeros); // [1, 2, 3, 4, 5] (sin
+          cambios) // Con objetos const usuarios = [ { nombre: "Ana", edad: 25
+          }, { nombre: "Juan", edad: 30 } ]; const nombres = usuarios.map((u) =>
+          u.nombre); // ["Ana", "Juan"]
+        </div>
+        <div class="tip">
+          <strong>💡 Cuándo usar:</strong> Cuando querés transformar cada
+          elemento y obtener un nuevo array.
+        </div>
+
+        <h3>filter - Filtrar</h3>
+        <div class="code">
+          const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // filter retorna
+          elementos que cumplen la condición const pares = numeros.filter((num)
+          => num % 2 === 0); console.log(pares); // [2, 4, 6, 8, 10] const
+          mayores5 = numeros.filter((num) => num > 5); console.log(mayores5); //
+          [6, 7, 8, 9, 10] // Con objetos const productos = [ { nombre:
+          "Laptop", precio: 1000 }, { nombre: "Mouse", precio: 25 } ]; const
+          caros = productos.filter((p) => p.precio > 50); // [{ nombre:
+          "Laptop", precio: 1000 }]
+        </div>
+
+        <h3>find - Encontrar</h3>
+        <div class="code">
+          const numeros = [1, 2, 3, 4, 5]; // Retorna el PRIMER elemento que
+          cumple la condición const primerPar = numeros.find((num) => num % 2
+          === 0); console.log(primerPar); // 2 const noExiste =
+          numeros.find((num) => num > 10); console.log(noExiste); // undefined
+          // findIndex retorna el índice const indice = numeros.findIndex((num)
+          => num === 3); console.log(indice); // 2
+        </div>
+
+        <h3>reduce - Reducir a un valor</h3>
+        <div class="code">
+          const numeros = [1, 2, 3, 4, 5]; // Suma const suma =
+          numeros.reduce((acumulador, numero) => { return acumulador + numero;
+          }, 0); // 0 es el valor inicial console.log(suma); // 15 // Forma
+          corta const suma = numeros.reduce((acc, num) => acc + num, 0); //
+          Encontrar máximo const max = numeros.reduce((max, num) => num > max ?
+          num : max); // Contar ocurrencias const frutas = ["manzana", "banana",
+          "manzana"]; const conteo = frutas.reduce((acc, fruta) => { acc[fruta]
+          = (acc[fruta] || 0) + 1; return acc; }, {}); // { manzana: 2, banana:
+          1 }
+        </div>
+
+        <h3>some y every</h3>
+        <div class="code">
+          const numeros = [1, 2, 3, 4, 5]; // some - ¿al menos UNO cumple? const
+          hayPares = numeros.some((num) => num % 2 === 0);
+          console.log(hayPares); // true // every - ¿TODOS cumplen? const
+          todosPares = numeros.every((num) => num % 2 === 0);
+          console.log(todosPares); // false
+        </div>
+      </div>
+
+      <!-- ENCADENAMIENTO -->
+      <div class="section">
+        <h2>Encadenar Métodos (Chaining)</h2>
+        <div class="code">
+          const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // Filtrar pares,
+          duplicarlos y sumarlos const resultado = numeros .filter(num => num %
+          2 === 0) // [2, 4, 6, 8, 10] .map(num => num * 2) // [4, 8, 12, 16,
+          20] .reduce((sum, num) => sum + num, 0); // 60 console.log(resultado);
+          // 60
+        </div>
+
+        <div class="code">
+          // Ejemplo con objetos const productos = [ { nombre: "Laptop", precio:
+          1000, stock: 5 }, { nombre: "Mouse", precio: 25, stock: 0 }, { nombre:
+          "Teclado", precio: 80, stock: 10 } ]; const totalVentas = productos
+          .filter(p => p.stock > 0) // Solo con stock .map(p => p.precio *
+          p.stock) // Total por producto .reduce((sum, total) => sum + total,
+          0); // Suma console.log(totalVentas); // 5800
+        </div>
+      </div>
+
+      <!-- OBJETOS -->
+      <div class="section">
+        <h2>Objetos (Objects)</h2>
+
+        <h3>Creación de Objetos</h3>
+        <div class="code">
+          // Objeto literal const persona = { nombre: "Ana", edad: 25, ciudad:
+          "Buenos Aires" }; // Objeto vacío const vacio = {}; // Con propiedades
+          calculadas const prop = "apellido"; const usuario = { nombre: "Juan",
+          [prop]: "Pérez" // apellido: "Pérez" };
+        </div>
+
+        <h3>Acceso a Propiedades</h3>
+        <div class="code">
+          const persona = { nombre: "Ana", edad: 25 }; // Dot notation (notación
+          de punto) console.log(persona.nombre); // "Ana" // Bracket notation
+          (notación de corchetes) console.log(persona["edad"]); // 25 // Útil
+          con variables const prop = "nombre"; console.log(persona[prop]); //
+          "Ana"
+        </div>
+
+        <h3>Modificar y Agregar Propiedades</h3>
+        <div class="code">
+          const persona = { nombre: "Ana", edad: 25 }; // Modificar persona.edad
+          = 26; persona["nombre"] = "Ana María"; // Agregar persona.ciudad =
+          "Buenos Aires"; // Eliminar delete persona.edad; console.log(persona);
+          // { nombre: "Ana María", ciudad: "Buenos Aires" }
+        </div>
+
+        <h3>Métodos en Objetos</h3>
+        <div class="code">
+          const persona = { nombre: "Ana", edad: 25, // Método (forma corta
+          ES6+) saludar() { return `Hola, soy ${this.nombre}`; }, // Método
+          tradicional despedir: function() { return `Chau! - ${this.nombre}`; }
+          }; console.log(persona.saludar()); // "Hola, soy Ana"
+          console.log(persona.despedir()); // "Chau! - Ana"
+        </div>
+        <div class="important">
+          <strong>⚠️ Importante:</strong> Evitá usar arrow functions como
+          métodos si necesitás usar <code>this</code>.
+        </div>
+      </div>
+
+      <!-- OBJECT METHODS -->
+      <div class="section">
+        <h2>Object Methods</h2>
+        <div class="code">
+          const persona = { nombre: "Ana", edad: 25, ciudad: "Buenos Aires" };
+          // Object.keys - array de claves const claves = Object.keys(persona);
+          console.log(claves); // ["nombre", "edad", "ciudad"] // Object.values
+          - array de valores const valores = Object.values(persona);
+          console.log(valores); // ["Ana", 25, "Buenos Aires"] // Object.entries
+          - array de pares [clave, valor] const entradas =
+          Object.entries(persona); console.log(entradas); // [["nombre", "Ana"],
+          ["edad", 25], ["ciudad", "Buenos Aires"]] // Iterar sobre objeto
+          Object.entries(persona).forEach(([clave, valor]) => {
+          console.log(`${clave}: ${valor}`); });
+        </div>
+      </div>
+
+      <!-- DESTRUCTURING -->
+      <div class="section">
+        <h2>Destructuring (Desestructuración)</h2>
+
+        <h3>Destructuring de Arrays</h3>
+        <div class="code">
+          const colores = ["rojo", "verde", "azul", "amarillo"]; // Extraer
+          valores const [primero, segundo, tercero] = colores;
+          console.log(primero); // "rojo" console.log(segundo); // "verde" //
+          Saltear elementos const [r, , b] = colores; console.log(r); // "rojo"
+          console.log(b); // "azul" // Rest operator const [principal, ...otros]
+          = colores; console.log(principal); // "rojo" console.log(otros); //
+          ["verde", "azul", "amarillo"]
+        </div>
+
+        <h3>Destructuring de Objetos</h3>
+        <div class="code">
+          const persona = { nombre: "Ana", edad: 25, ciudad: "Buenos Aires" };
+          // Extraer propiedades const { nombre, edad } = persona;
+          console.log(nombre); // "Ana" console.log(edad); // 25 // Renombrar
+          variables const { nombre: nombreCompleto, edad: años } = persona;
+          console.log(nombreCompleto); // "Ana" // Valores por defecto const {
+          nombre, pais = "Argentina" } = persona; console.log(pais); //
+          "Argentina" // Rest operator const { nombre, ...resto } = persona;
+          console.log(resto); // { edad: 25, ciudad: "Buenos Aires" }
+        </div>
+      </div>
+
+      <!-- SPREAD OPERATOR -->
+      <div class="section">
+        <h2>Spread Operator (...)</h2>
+
+        <h3>Con Arrays</h3>
+        <div class="code">
+          const arr1 = [1, 2, 3]; const arr2 = [4, 5, 6]; // Combinar arrays
+          const combinado = [...arr1, ...arr2]; console.log(combinado); // [1,
+          2, 3, 4, 5, 6] // Copiar array const copia = [...arr1]; // Agregar
+          elementos const conExtras = [0, ...arr1, 99]; // [0, 1, 2, 3, 99]
+        </div>
+
+        <h3>Con Objetos</h3>
+        <div class="code">
+          const datos1 = { nombre: "Ana", edad: 25 }; const datos2 = { ciudad:
+          "Buenos Aires", pais: "Argentina" }; // Combinar objetos const
+          completo = { ...datos1, ...datos2 }; console.log(completo); // {
+          nombre: "Ana", edad: 25, ciudad: "Buenos Aires", pais: "Argentina" }
+          // Copiar objeto const copia = { ...datos1 }; // Sobrescribir
+          propiedades const actualizado = { ...datos1, edad: 26, profesion:
+          "Dev" }; console.log(actualizado); // { nombre: "Ana", edad: 26,
+          profesion: "Dev" }
+        </div>
+      </div>
+
+      <!-- JSON -->
+      <div class="section">
+        <h2>JSON (JavaScript Object Notation)</h2>
+        <div class="code">
+          const persona = { nombre: "Ana", edad: 25, hobbies: ["leer",
+          "programar"] }; // Objeto a JSON string const jsonString =
+          JSON.stringify(persona); console.log(jsonString); //
+          '{"nombre":"Ana","edad":25,"hobbies":["leer","programar"]}'
+          console.log(typeof jsonString); // "string" // JSON string a objeto
+          const objetoRecuperado = JSON.parse(jsonString);
+          console.log(objetoRecuperado); // { nombre: "Ana", edad: 25, hobbies:
+          ["leer", "programar"] } console.log(typeof objetoRecuperado); //
+          "object" // JSON con formato bonito (para debugging) const jsonBonito
+          = JSON.stringify(persona, null, 2); console.log(jsonBonito);
+        </div>
+
+        <div class="tip">
+          <strong>💡 Uso común:</strong> JSON se usa para enviar y recibir datos
+          de APIs y servidores.
+        </div>
+      </div>
+
+      <!-- COMPARACIÓN MÉTODOS -->
+      <div class="section">
+        <h2>Comparación Rápida de Métodos</h2>
+        <table>
+          <tr>
+            <th>Método</th>
+            <th>Retorna</th>
+            <th>Cuándo usar</th>
+          </tr>
+          <tr>
+            <td><code>forEach</code></td>
+            <td>undefined</td>
+            <td>Ejecutar código para cada elemento</td>
+          </tr>
+          <tr>
+            <td><code>map</code></td>
+            <td>Nuevo array</td>
+            <td>Transformar cada elemento</td>
+          </tr>
+          <tr>
+            <td><code>filter</code></td>
+            <td>Nuevo array</td>
+            <td>Filtrar elementos que cumplen condición</td>
+          </tr>
+          <tr>
+            <td><code>find</code></td>
+            <td>Un elemento o undefined</td>
+            <td>Encontrar el primer elemento que cumple</td>
+          </tr>
+          <tr>
+            <td><code>reduce</code></td>
+            <td>Un valor único</td>
+            <td>Reducir array a un único valor (suma, max, etc.)</td>
+          </tr>
+          <tr>
+            <td><code>some</code></td>
+            <td>Boolean</td>
+            <td>Verificar si al menos uno cumple</td>
+          </tr>
+          <tr>
+            <td><code>every</code></td>
+            <td>Boolean</td>
+            <td>Verificar si todos cumplen</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- EJEMPLOS PRÁCTICOS -->
+      <div class="section">
+        <h2>Ejemplos Prácticos Comunes</h2>
+
+        <h3>Calcular promedio</h3>
+        <div class="code">
+          const notas = [8, 7, 9, 6, 10]; const promedio = notas.reduce((sum,
+          nota) => sum + nota, 0) / notas.length;
+        </div>
+
+        <h3>Eliminar duplicados</h3>
+        <div class="code">
+          const numeros = [1, 2, 2, 3, 4, 4, 5]; const unicos = [...new
+          Set(numeros)]; // [1, 2, 3, 4, 5]
+        </div>
+
+        <h3>Agrupar por propiedad</h3>
+        <div class="code">
+          const personas = [ { nombre: "Ana", edad: 25, ciudad: "Buenos Aires"
+          }, { nombre: "Juan", edad: 30, ciudad: "Córdoba" }, { nombre: "María",
+          edad: 28, ciudad: "Buenos Aires" } ]; const porCiudad =
+          personas.reduce((acc, p) => { if (!acc[p.ciudad]) acc[p.ciudad] = [];
+          acc[p.ciudad].push(p); return acc; }, {});
+        </div>
+
+        <h3>Ordenar array</h3>
+        <div class="code">
+          const numeros = [5, 2, 8, 1, 9]; // Ascendente numeros.sort((a, b) =>
+          a - b); // [1, 2, 5, 8, 9] // Descendente numeros.sort((a, b) => b -
+          a); // [9, 8, 5, 2, 1] // Ordenar objetos por propiedad const personas
+          = [ { nombre: "Juan", edad: 30 }, { nombre: "Ana", edad: 25 } ];
+          personas.sort((a, b) => a.edad - b.edad); // Ordenados por edad
+          ascendente
+        </div>
+      </div>
+
+      <div class="tip">
+        <strong>🎯 Recursos adicionales:</strong>
+        <ul>
+          <li><strong>MDN Web Docs:</strong> developer.mozilla.org</li>
+          <li><strong>JavaScript.info:</strong> javascript.info</li>
+          <li>
+            <strong>Array Explorer:</strong> arrayexplorer.netlify.app (ayuda a
+            elegir el método correcto)
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

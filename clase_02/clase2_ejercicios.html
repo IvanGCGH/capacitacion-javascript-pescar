@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 2 - Ejercicios Prácticos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #001E60 0%, #6998ff 100%);
+            padding: 40px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #001E60;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #001E60;
+            font-size: 1.8em;
+            margin: 30px 0 15px 0;
+            padding-left: 10px;
+            border-left: 5px solid #001E60;
+        }
+        
+        h3 {
+            color: #001E60;
+            font-size: 1.4em;
+            margin: 25px 0 10px 0;
+        }
+        
+        .exercise {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 5px solid #001E60;
+        }
+        
+        .exercise p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .easy {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            margin: 15px 0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.5;
+            tab-size: 2;
+            -moz-tab-size: 2;
+        }
+        
+        .hint {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .hint strong {
+            color: #2196F3;
+        }
+        
+        .instruction {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ffc107;
+        }
+        
+        .instruction h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        ol, ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin: 8px 0;
+            font-size: 1.05em;
+        }
+        
+        .solution-toggle {
+            background: #001E60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        
+        .solution-toggle:hover {
+            background: #5568d3;
+        }
+        
+        .solution {
+            display: none;
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.5;
+            tab-size: 2;
+            -moz-tab-size: 2;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 5px solid #28a745;
+        }
+
+        .artech-logo-container {
+            text-align: end;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="artech-logo-container">
+            <img src="./artech-logo.png" alt="Artech Logo" style="width: 150px; height: 30px;">
+        </div>
+
+        <h1>🎯 Ejercicios Prácticos</h1>
+        <p class="subtitle">Clase 2 - Arrays, Objetos y Métodos</p>
+        
+        <div class="instruction">
+            <h3>📋 Instrucciones</h3>
+            <ol>
+                <li>Abrí la consola del navegador (F12 → Console)</li>
+                <li>Escribí tu código directamente en la consola</li>
+                <li>O crea un archivo <code>ejercicios.js</code> y enlazalo a un HTML</li>
+                <li>Intentá resolver cada ejercicio antes de ver la solución</li>
+            </ol>
+        </div>
+
+        <h2>📦 Ejercicios de Arrays Básicos</h2>
+        
+        <!-- EJERCICIO 1 -->
+        <div class="exercise">
+            <span class="difficulty easy">Fácil</span>
+            <h3>Ejercicio 1: Crear y Manipular Arrays</h3>
+            <p>Creá un array con 5 nombres de tus películas favoritas. Después:</p>
+            <ul>
+                <li>Agregá una película al final</li>
+                <li>Agregá una al principio</li>
+                <li>Eliminá la última película</li>
+                <li>Mostrá la cantidad total de películas</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol1')">Ver Solución</button>
+            <div class="solution" id="sol1">
+const peliculas = ["Inception", "Matrix", "Interstellar", "Avatar", "Gladiator"];
+
+// Agregar al final
+peliculas.push("The Dark Knight");
+console.log("Después de push:", peliculas);
+
+// Agregar al principio
+peliculas.unshift("Pulp Fiction");
+console.log("Después de unshift:", peliculas);
+
+// Eliminar última
+const eliminada = peliculas.pop();
+console.log("Película eliminada:", eliminada);
+console.log("Array actual:", peliculas);
+
+// Cantidad total
+console.log("Total de películas:", peliculas.length);
+            </div>
+        </div>
+
+        <!-- EJERCICIO 2 -->
+        <div class="exercise">
+            <span class="difficulty easy">Fácil</span>
+            <h3>Ejercicio 2: Acceso a Elementos</h3>
+            <p>Dado el array: <code>const numeros = [10, 20, 30, 40, 50, 60];</code></p>
+            <ul>
+                <li>Obtené el primer elemento</li>
+                <li>Obtené el último elemento (sin hardcodear el índice)</li>
+                <li>Obtené el elemento del medio</li>
+                <li>Modificá el tercer elemento para que valga 99</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol2')">Ver Solución</button>
+            <div class="solution" id="sol2">
+const numeros = [10, 20, 30, 40, 50, 60];
+
+// Primer elemento
+console.log("Primero:", numeros[0]);  // 10
+
+// Último elemento (sin hardcodear)
+console.log("Último:", numeros[numeros.length - 1]);  // 60
+
+// Elemento del medio
+const indiceMedia = Math.floor(numeros.length / 2);
+console.log("Medio:", numeros[indiceMedia]);  // 40
+
+// Modificar tercer elemento
+numeros[2] = 99;
+console.log("Array modificado:", numeros);
+// [10, 20, 99, 40, 50, 60]
+            </div>
+        </div>
+
+        <h2>🔄 Ejercicios de forEach y map</h2>
+
+        <!-- EJERCICIO 3 -->
+        <div class="exercise">
+            <span class="difficulty medium">Medio</span>
+            <h3>Ejercicio 3: forEach - Mostrar con Formato</h3>
+            <p>Dado el array de nombres: <code>["Ana", "Juan", "María", "Pedro"]</code></p>
+            <p>Usa <code>forEach</code> para mostrar cada nombre con el formato: "Hola, [nombre]!"</p>
+            
+            <div class="hint">
+                <strong>💡 Pista:</strong> forEach ejecuta una función para cada elemento del array.
+            </div>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol3')">Ver Solución</button>
+            <div class="solution" id="sol3">
+const nombres = ["Ana", "Juan", "María", "Pedro"];
+
+nombres.forEach((nombre) => {
+    console.log(`Hola, ${nombre}!`);
+});
+
+// Salida:
+// Hola, Ana!
+// Hola, Juan!
+// Hola, María!
+// Hola, Pedro!
+
+// Con índice también:
+nombres.forEach((nombre, index) => {
+    console.log(`${index + 1}. Hola, ${nombre}!`);
+});
+            </div>
+        </div>
+
+        <!-- EJERCICIO 4 -->
+        <div class="exercise">
+            <span class="difficulty medium">Medio</span>
+            <h3>Ejercicio 4: map - Transformar Datos</h3>
+            <p>Dado el array: <code>const precios = [100, 200, 350, 80, 120];</code></p>
+            <p>Usa <code>map</code> para crear un nuevo array donde cada precio tenga un 15% de descuento.</p>
+            
+            <div class="hint">
+                <strong>💡 Pista:</strong> map crea un nuevo array transformando cada elemento. Precio con descuento = precio * 0.85
+            </div>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol4')">Ver Solución</button>
+            <div class="solution" id="sol4">
+const precios = [100, 200, 350, 80, 120];
+
+const preciosConDescuento = precios.map((precio) => precio * 0.85);
+
+console.log("Precios originales:", precios);
+console.log("Precios con 15% descuento:", preciosConDescuento);
+
+// Con formato más lindo
+const preciosFormateados = precios.map((precio) => {
+    const conDescuento = precio * 0.85;
+    return `$${precio} → $${conDescuento}`;
+});
+
+console.log(preciosFormateados);
+            </div>
+        </div>
+
+        <!-- EJERCICIO 5 -->
+        <div class="exercise">
+            <span class="difficulty medium">Medio</span>
+            <h3>Ejercicio 5: map con Objetos</h3>
+            <p>Dado el array de usuarios:</p>
+            <div class="code-example">
+const usuarios = [
+    { nombre: "Ana", edad: 25 },
+    { nombre: "Juan", edad: 30 },
+    { nombre: "María", edad: 28 }
+];
+            </div>
+            <p>Usa <code>map</code> para crear un nuevo array que solo contenga los nombres en mayúsculas.</p>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol5')">Ver Solución</button>
+            <div class="solution" id="sol5">
+const usuarios = [
+    { nombre: "Ana", edad: 25 },
+    { nombre: "Juan", edad: 30 },
+    { nombre: "María", edad: 28 }
+];
+
+const nombresMayusculas = usuarios.map((usuario) => {
+    return usuario.nombre.toUpperCase();
+});
+
+console.log(nombresMayusculas);  // ["ANA", "JUAN", "MARÍA"]
+
+// Forma más corta
+const nombres = usuarios.map((u) => u.nombre.toUpperCase());
+
+// O agregar una nueva propiedad a cada objeto
+const usuariosConNombreMayus = usuarios.map((usuario) => {
+    return {
+        ...usuario,
+        nombreMayusculas: usuario.nombre.toUpperCase()
+    };
+});
+
+console.log(usuariosConNombreMayus);
+            </div>
+        </div>
+
+        <h2>🔍 Ejercicios de filter y find</h2>
+
+        <!-- EJERCICIO 6 -->
+        <div class="exercise">
+            <span class="difficulty medium">Medio</span>
+            <h3>Ejercicio 6: filter - Filtrar Números</h3>
+            <p>Dado el array: <code>const numeros = [5, 12, 8, 21, 3, 18, 30, 7];</code></p>
+            <p>Usa <code>filter</code> para:</p>
+            <ul>
+                <li>Obtener solo los números mayores a 10</li>
+                <li>Obtener solo los números pares</li>
+                <li>Obtener los números que son mayores a 10 Y pares</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol6')">Ver Solución</button>
+            <div class="solution" id="sol6">
+const numeros = [5, 12, 8, 21, 3, 18, 30, 7];
+
+// Mayores a 10
+const mayoresA10 = numeros.filter((num) => num > 10);
+console.log("Mayores a 10:", mayoresA10);  // [12, 21, 18, 30]
+
+// Pares
+const pares = numeros.filter((num) => num % 2 === 0);
+console.log("Pares:", pares);  // [12, 8, 18, 30]
+
+// Mayores a 10 Y pares
+const mayores10YPares = numeros.filter((num) => {
+    return num > 10 && num % 2 === 0;
+});
+console.log("Mayores a 10 Y pares:", mayores10YPares);  // [12, 18, 30]
+            </div>
+        </div>
+
+        <!-- EJERCICIO 7 -->
+        <div class="exercise">
+            <span class="difficulty medium">Medio</span>
+            <h3>Ejercicio 7: filter - Filtrar Productos</h3>
+            <p>Dado el array de productos:</p>
+            <div class="code-example">
+const productos = [
+    { nombre: "Laptop", precio: 1000, categoria: "tech" },
+    { nombre: "Camisa", precio: 50, categoria: "ropa" },
+    { nombre: "Mouse", precio: 25, categoria: "tech" },
+    { nombre: "Pantalón", precio: 80, categoria: "ropa" },
+    { nombre: "Teclado", precio: 75, categoria: "tech" }
+];
+            </div>
+            <p>Usa <code>filter</code> para obtener:</p>
+            <ul>
+                <li>Solo productos de tecnología</li>
+                <li>Productos que cuesten menos de $100</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol7')">Ver Solución</button>
+            <div class="solution" id="sol7">
+const productos = [
+    { nombre: "Laptop", precio: 1000, categoria: "tech" },
+    { nombre: "Camisa", precio: 50, categoria: "ropa" },
+    { nombre: "Mouse", precio: 25, categoria: "tech" },
+    { nombre: "Pantalón", precio: 80, categoria: "ropa" },
+    { nombre: "Teclado", precio: 75, categoria: "tech" }
+];
+
+// Solo tech
+const productosTech = productos.filter((p) => p.categoria === "tech");
+console.log("Productos tech:", productosTech);
+
+// Menos de $100
+const productosBaratos = productos.filter((p) => p.precio < 100);
+console.log("Productos < $100:", productosBaratos);
+
+// Tech Y baratos
+const techBaratos = productos.filter((p) => {
+    return p.categoria === "tech" && p.precio < 100;
+});
+console.log("Tech baratos:", techBaratos);
+            </div>
+        </div>
+
+        <!-- EJERCICIO 8 -->
+        <div class="exercise">
+            <span class="difficulty medium">Medio</span>
+            <h3>Ejercicio 8: find - Encontrar Elemento</h3>
+            <p>Dado el array de estudiantes:</p>
+            <div class="code-example">
+const estudiantes = [
+    { id: 1, nombre: "Ana", nota: 8 },
+    { id: 2, nombre: "Juan", nota: 6 },
+    { id: 3, nombre: "María", nota: 9 },
+    { id: 4, nombre: "Pedro", nota: 7 }
+];
+            </div>
+            <p>Usa <code>find</code> para:</p>
+            <ul>
+                <li>Encontrar el estudiante con id 3</li>
+                <li>Encontrar el primer estudiante con nota mayor a 8</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol8')">Ver Solución</button>
+            <div class="solution" id="sol8">
+const estudiantes = [
+    { id: 1, nombre: "Ana", nota: 8 },
+    { id: 2, nombre: "Juan", nota: 6 },
+    { id: 3, nombre: "María", nota: 9 },
+    { id: 4, nombre: "Pedro", nota: 7 }
+];
+
+// Estudiante con id 3
+const estudianteId3 = estudiantes.find((est) => est.id === 3);
+console.log("Estudiante con id 3:", estudianteId3);
+// { id: 3, nombre: "María", nota: 9 }
+
+// Primer estudiante con nota > 8
+const primerNotaAlta = estudiantes.find((est) => est.nota > 8);
+console.log("Primera nota > 8:", primerNotaAlta);
+// { id: 3, nombre: "María", nota: 9 }
+
+// Si no encuentra, retorna undefined
+const noExiste = estudiantes.find((est) => est.id === 999);
+console.log("No existe:", noExiste);  // undefined
+            </div>
+        </div>
+
+        <h2>➕ Ejercicios de reduce</h2>
+
+        <!-- EJERCICIO 9 -->
+        <div class="exercise">
+            <span class="difficulty hard">Difícil</span>
+            <h3>Ejercicio 9: reduce - Sumar y Promediar</h3>
+            <p>Dado el array: <code>const notas = [8, 7, 9, 6, 10, 7, 8];</code></p>
+            <p>Usa <code>reduce</code> para:</p>
+            <ul>
+                <li>Calcular la suma de todas las notas</li>
+                <li>Calcular el promedio</li>
+            </ul>
+            
+            <div class="hint">
+                <strong>💡 Pista:</strong> reduce toma un acumulador y va sumando cada elemento. El promedio es suma / cantidad.
+            </div>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol9')">Ver Solución</button>
+            <div class="solution" id="sol9">
+const notas = [8, 7, 9, 6, 10, 7, 8];
+
+// Suma
+const suma = notas.reduce((acumulador, nota) => {
+    return acumulador + nota;
+}, 0);  // 0 es el valor inicial
+
+console.log("Suma:", suma);  // 55
+
+// Promedio
+const promedio = suma / notas.length;
+console.log("Promedio:", promedio);  // 7.857...
+
+// Todo en uno
+const prom = notas.reduce((acc, nota) => acc + nota, 0) / notas.length;
+console.log("Promedio directo:", prom);
+            </div>
+        </div>
+
+        <!-- EJERCICIO 10 -->
+        <div class="exercise">
+            <span class="difficulty hard">Difícil</span>
+            <h3>Ejercicio 10: reduce - Encontrar Máximo/Mínimo</h3>
+            <p>Dado el array: <code>const numeros = [45, 12, 89, 23, 67, 34, 91, 5];</code></p>
+            <p>Usá <code>reduce</code> para encontrar:</p>
+            <ul
+                <li>El número máximo</li>
+                <li>El número mínimo</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol10')">Ver Solución</button>
+            <div class="solution" id="sol10">
+const numeros = [45, 12, 89, 23, 67, 34, 91, 5];
+
+// Máximo
+const maximo = numeros.reduce((max, num) => {
+    return num > max ? num : max;
+}, numeros[0]);  // Empezamos con el primer elemento
+
+console.log("Máximo:", maximo);  // 91
+
+// Mínimo
+const minimo = numeros.reduce((min, num) => {
+    return num < min ? num : min;
+}, numeros[0]);
+
+console.log("Mínimo:", minimo);  // 5
+
+// Forma más corta
+const max = numeros.reduce((a, b) => a > b ? a : b);
+const min = numeros.reduce((a, b) => a < b ? a : b);
+            </div>
+        </div>
+
+        <h2>🔗 Ejercicios de Encadenamiento</h2>
+
+        <!-- EJERCICIO 11 -->
+        <div class="exercise">
+            <span class="difficulty hard">Difícil</span>
+            <h3>Ejercicio 11: Encadenar Métodos</h3>
+            <p>Dado el array:</p>
+            <div class="code-example">
+const productos = [
+    { nombre: "Laptop", precio: 1000, enStock: true },
+    { nombre: "Mouse", precio: 25, enStock: false },
+    { nombre: "Teclado", precio: 80, enStock: true },
+    { nombre: "Monitor", precio: 300, enStock: true },
+    { nombre: "Webcam", precio: 50, enStock: false }
+];
+            </div>
+            <p>Encadena métodos para:</p>
+            <ul>
+                <li>Filtrar solo productos en stock</li>
+                <li>Obtener solo los precios</li>
+                <li>Calcular el total</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol11')">Ver Solución</button>
+            <div class="solution" id="sol11">
+const productos = [
+    { nombre: "Laptop", precio: 1000, enStock: true },
+    { nombre: "Mouse", precio: 25, enStock: false },
+    { nombre: "Teclado", precio: 80, enStock: true },
+    { nombre: "Monitor", precio: 300, enStock: true },
+    { nombre: "Webcam", precio: 50, enStock: false }
+];
+
+const total = productos
+    .filter((p) => p.enStock)           // Solo en stock
+    .map((p) => p.precio)               // Solo precios
+    .reduce((sum, precio) => sum + precio, 0);  // Suma
+
+console.log("Total de productos en stock:", total);  // 1380
+
+// Paso por paso para entender:
+const enStock = productos.filter((p) => p.enStock);
+console.log("1. En stock:", enStock);
+
+const precios = enStock.map((p) => p.precio);
+console.log("2. Precios:", precios);
+
+const suma = precios.reduce((sum, p) => sum + p, 0);
+console.log("3. Total:", suma);
+            </div>
+        </div>
+
+        <h2>📋 Ejercicios de Objetos</h2>
+
+        <!-- EJERCICIO 12 -->
+        <div class="exercise">
+            <span class="difficulty easy">Fácil</span>
+            <h3>Ejercicio 12: Crear y Manipular Objetos</h3>
+            <p>Creá un objeto que represente un libro con las propiedades: título, autor, año, páginas.</p>
+            <p>Después:</p>
+            <ul>
+                <li>Muestra el título y el autor</li>
+                <li>Agrega una nueva propiedad "genero"</li>
+                <li>Modifica el año</li>
+                <li>Elimina la propiedad páginas</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol12')">Ver Solución</button>
+            <div class="solution" id="sol12">
+const libro = {
+    titulo: "Cien años de soledad",
+    autor: "Gabriel García Márquez",
+    año: 1967,
+    paginas: 471
+};
+
+// Mostrar título y autor
+console.log(`${libro.titulo} - ${libro.autor}`);
+
+// Agregar género
+libro.genero = "Realismo mágico";
+console.log("Con género:", libro);
+
+// Modificar año
+libro.año = 1970;
+console.log("Año modificado:", libro);
+
+// Eliminar páginas
+delete libro.paginas;
+console.log("Sin páginas:", libro);
+            </div>
+        </div>
+
+        <!-- EJERCICIO 13 -->
+        <div class="exercise">
+            <span class="difficulty medium">Medio</span>
+            <h3>Ejercicio 13: Métodos en Objetos</h3>
+            <p>Creá un objeto "calculadora" con métodos para:</p>
+            <ul>
+                <li>sumar(a, b)</li>
+                <li>restar(a, b)</li>
+                <li>multiplicar(a, b)</li>
+                <li>dividir(a, b)</li>
+            </ul>
+            <p>Probá cada método.</p>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol13')">Ver Solución</button>
+            <div class="solution" id="sol13">
+const calculadora = {
+    sumar(a, b) {
+        return a + b;
+    },
+    
+    restar(a, b) {
+        return a - b;
+    },
+    
+    multiplicar(a, b) {
+        return a * b;
+    },
+    
+    dividir(a, b) {
+        if (b === 0) {
+            return "Error: No se puede dividir por cero";
+        }
+        return a / b;
+    }
+};
+
+// Pruebas
+console.log("10 + 5 =", calculadora.sumar(10, 5));
+console.log("10 - 5 =", calculadora.restar(10, 5));
+console.log("10 * 5 =", calculadora.multiplicar(10, 5));
+console.log("10 / 5 =", calculadora.dividir(10, 5));
+console.log("10 / 0 =", calculadora.dividir(10, 0));
+            </div>
+        </div>
+
+        <!-- EJERCICIO 14 -->
+        <div class="exercise">
+            <span class="difficulty medium">Medio</span>
+            <h3>Ejercicio 14: Object.keys, values, entries</h3>
+            <p>Dado el objeto:</p>
+            <div class="code-example">
+const estudiante = {
+    nombre: "Ana",
+    edad: 20,
+    carrera: "Ingeniería",
+    promedio: 8.5
+};
+            </div>
+            <p>Usa Object.keys, Object.values y Object.entries para:</p>
+            <ul>
+                <li>Mostrar todas las propiedades</li>
+                <li>Mostrar todos los valores</li>
+                <li>Iterar y mostrar cada par clave-valor</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol14')">Ver Solución</button>
+            <div class="solution" id="sol14">
+const estudiante = {
+    nombre: "Ana",
+    edad: 20,
+    carrera: "Ingeniería",
+    promedio: 8.5
+};
+
+// Propiedades (keys)
+const propiedades = Object.keys(estudiante);
+console.log("Propiedades:", propiedades);
+// ["nombre", "edad", "carrera", "promedio"]
+
+// Valores (values)
+const valores = Object.values(estudiante);
+console.log("Valores:", valores);
+// ["Ana", 20, "Ingeniería", 8.5]
+
+// Pares clave-valor (entries)
+const pares = Object.entries(estudiante);
+console.log("Pares:", pares);
+// [["nombre", "Ana"], ["edad", 20], ...]
+
+// Iterar
+Object.entries(estudiante).forEach(([clave, valor]) => {
+    console.log(`${clave}: ${valor}`);
+});
+            </div>
+        </div>
+
+        <h2>🎯 Ejercicios Integradores</h2>
+
+        <!-- EJERCICIO 15 -->
+        <div class="exercise">
+            <span class="difficulty hard">Difícil</span>
+            <h3>Ejercicio 15: Análisis de Estudiantes</h3>
+            <p>Dado el array de estudiantes:</p>
+            <div class="code-example">
+const estudiantes = [
+    { nombre: "Ana", edad: 20, notas: [8, 9, 7, 8] },
+    { nombre: "Juan", edad: 22, notas: [6, 7, 8, 7] },
+    { nombre: "María", edad: 21, notas: [9, 10, 9, 10] },
+    { nombre: "Pedro", edad: 19, notas: [5, 6, 5, 6] }
+];
+            </div>
+            <p>Calcula:</p>
+            <ul>
+                <li>El promedio de notas de cada estudiante</li>
+                <li>Filtrá solo los que tienen promedio >= 7</li>
+                <li>Obtené solo los nombres de los aprobados</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol15')">Ver Solución</button>
+            <div class="solution" id="sol15">
+const estudiantes = [
+    { nombre: "Ana", edad: 20, notas: [8, 9, 7, 8] },
+    { nombre: "Juan", edad: 22, notas: [6, 7, 8, 7] },
+    { nombre: "María", edad: 21, notas: [9, 10, 9, 10] },
+    { nombre: "Pedro", edad: 19, notas: [5, 6, 5, 6] }
+];
+
+// 1. Calcular promedio de cada uno
+const conPromedios = estudiantes.map((est) => {
+    const suma = est.notas.reduce((acc, nota) => acc + nota, 0);
+    const promedio = suma / est.notas.length;
+    return { ...est, promedio };
+});
+
+console.log("Con promedios:", conPromedios);
+
+// 2. Filtrar aprobados (promedio >= 7)
+const aprobados = conPromedios.filter((est) => est.promedio >= 7);
+console.log("Aprobados:", aprobados);
+
+// 3. Solo nombres
+const nombresAprobados = aprobados.map((est) => est.nombre);
+console.log("Nombres de aprobados:", nombresAprobados);
+
+// Todo encadenado:
+const resultado = estudiantes
+    .map((e) => ({
+        ...e,
+        promedio: e.notas.reduce((a, n) => a + n, 0) / e.notas.length
+    }))
+    .filter((e) => e.promedio >= 7)
+    .map((e) => e.nombre);
+
+console.log("Resultado final:", resultado);
+            </div>
+        </div>
+
+        <!-- EJERCICIO 16 -->
+        <div class="exercise">
+            <span class="difficulty hard">Difícil</span>
+            <h3>Ejercicio 16: Gestión de Inventario</h3>
+            <p>Dado el inventario:</p>
+            <div class="code-example">
+const inventario = [
+    { id: 1, producto: "Laptop", precio: 1000, cantidad: 5 },
+    { id: 2, producto: "Mouse", precio: 25, cantidad: 0 },
+    { id: 3, producto: "Teclado", precio: 80, cantidad: 10 },
+    { id: 4, producto: "Monitor", precio: 300, cantidad: 3 }
+];
+            </div>
+            <p>Calculá:</p>
+            <ul>
+                <li>Valor total del inventario (precio × cantidad)</li>
+                <li>Productos sin stock</li>
+                <li>Producto más caro</li>
+            </ul>
+            
+            <button class="solution-toggle" onclick="toggleSolution('sol16')">Ver Solución</button>
+            <div class="solution" id="sol16">
+const inventario = [
+    { id: 1, producto: "Laptop", precio: 1000, cantidad: 5 },
+    { id: 2, producto: "Mouse", precio: 25, cantidad: 0 },
+    { id: 3, producto: "Teclado", precio: 80, cantidad: 10 },
+    { id: 4, producto: "Monitor", precio: 300, cantidad: 3 }
+];
+
+// Valor total del inventario
+const valorTotal = inventario.reduce((total, item) => {
+    return total + (item.precio * item.cantidad);
+}, 0);
+
+console.log("Valor total del inventario:", valorTotal);  // 6700
+
+// Productos sin stock
+const sinStock = inventario.filter((item) => item.cantidad === 0);
+console.log("Sin stock:", sinStock);
+
+// Producto más caro
+const masCaro = inventario.reduce((max, item) => {
+    return item.precio > max.precio ? item : max;
+}, inventario[0]);
+
+console.log("Producto más caro:", masCaro);
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+            const solution = document.getElementById(id);
+            if (solution.style.display === "none" || solution.style.display === "") {
+                solution.style.display = "block";
+            } else {
+                solution.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

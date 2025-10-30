@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 2 - Arrays, Objetos y Métodos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #001E60 0%, #373737 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: white;
+            margin: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            color: #001E60;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2.5em;
+            color: #535353;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 1.8em;
+            color: #001E60;
+            margin: 25px 0 15px 0;
+        }
+        
+        p, li {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #001E60;
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 20px 0;
+            overflow-x: auto;
+            width: 100%;
+            max-width: 900px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            color: #f92672;
+            font-weight: bold;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px 0;
+        }
+        
+        .comparison-box {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid #001E60;
+        }
+        
+        .comparison-box h4 {
+            color: #535353;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .emphasis {
+            background: #fff3cd;
+            padding: 20px;
+            border-left: 5px solid #ffc107;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .tip {
+            background: #d4edda;
+            padding: 20px;
+            border-left: 5px solid #28a745;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #001E60;
+            padding: 15px 25px;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        table {
+            width: 100%;
+            max-width: 900px;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        th {
+            background: #001E60;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .intro-icon {
+            font-size: 5em;
+            margin: 20px 0;
+        }
+
+        .three-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 1100px;
+            margin: 20px 0;
+        }
+
+        .method-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-top: 4px solid #001E60;
+        }
+
+        .method-box h4 {
+            color: #001E60;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .method-box .code-small {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 8px 0;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <img src="./artech-logo.png" alt="" style="position: fixed; top: 50px; right: 50px; width: 150px; height: 30px;">
+
+    <!-- SLIDE 1: PORTADA -->
+    <div class="slide">
+        <div class="intro-icon">📦</div>
+        <h1>Capacitación de Javascript</h1>
+        <p class="subtitle">Clase 2 - Arrays, Objetos y Métodos</p>
+        <p style="font-size: 1.2em; margin-top: 40px;">Estructuras de datos fundamentales</p>
+    </div>
+
+    <!-- SLIDE 2: REPASO CLASE 1 -->
+    <div class="slide">
+        <h2>📝 Repaso Rápido - Clase 1</h2>
+        <div style="max-width: 900px;">
+            <ul>
+                <li><strong>Variables:</strong> let (puede cambiar), const (constante)</li>
+                <li><strong>Tipos:</strong> string, number, boolean, null, undefined</li>
+                <li><strong>Template literals:</strong> `Hola ${nombre}`</li>
+                <li><strong>Operadores:</strong> === (comparación estricta)</li>
+                <li><strong>Condicionales:</strong> if/else, switch, ternario</li>
+                <li><strong>Loops:</strong> for, while, do-while</li>
+                <li><strong>Funciones:</strong> tradicionales y arrow functions</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: QUÉ VEREMOS HOY -->
+    <div class="slide">
+        <h2>🎯 ¿Qué vamos a ver hoy?</h2>
+        <ul style="font-size: 1.4em;">
+            <li><strong>Arrays:</strong> Listas de datos y cómo manipularlas</li>
+            <li><strong>Métodos de arrays:</strong> forEach, map, filter, find, reduce</li>
+            <li><strong>Objetos:</strong> Estructuras de datos complejas</li>
+            <li><strong>JSON:</strong> Formato de intercambio de datos</li>
+            <li><strong>Destructuring:</strong> Forma moderna de extraer datos</li>
+        </ul>
+    </div>
+
+    <!-- SLIDE 4: ARRAYS - INTRODUCCIÓN -->
+    <div class="slide">
+        <h2>📦 Arrays (Arreglos)</h2>
+        <p style="font-size: 1.3em; margin-bottom: 20px;">Un array es una lista ordenada de valores</p>
+        
+        <h3>Creación de Arrays</h3>
+        <div class="code-block">
+// Forma literal (más común)
+const numeros = [1, 2, 3, 4, 5];
+const frutas = ["manzana", "banana", "naranja"];
+const mixto = [1, "texto", true, null];
+
+// Array vacío
+const vacio = [];
+
+// Con el constructor (menos común)
+const arr = new Array(5);  // Array de 5 posiciones vacías
+        </div>
+
+        <div class="tip">
+            <strong>💡 Importante:</strong> Los arrays en JavaScript pueden contener valores de diferentes tipos
+        </div>
+    </div>
+
+    <!-- SLIDE 5: ACCESO A ELEMENTOS -->
+    <div class="slide">
+        <h2>Acceso a Elementos del Array</h2>
+        <div class="code-block">
+const frutas = ["manzana", "banana", "naranja", "pera"];
+
+// Acceso por índice (empiezan en 0)
+console.log(frutas[0]);  // "manzana"
+console.log(frutas[1]);  // "banana"
+console.log(frutas[3]);  // "pera"
+
+// Último elemento
+console.log(frutas[frutas.length - 1]);  // "pera"
+
+// Modificar un elemento
+frutas[1] = "frutilla";
+console.log(frutas);  // ["manzana", "frutilla", "naranja", "pera"]
+
+// Obtener longitud
+console.log(frutas.length);  // 4
+        </div>
+
+        <div class="emphasis">
+            <strong>⚠️ Importante:</strong> Los índices empiezan en 0, no en 1
+        </div>
+    </div>
+
+    <!-- SLIDE 6: MÉTODOS BÁSICOS -->
+    <div class="slide">
+        <h2>Métodos Básicos de Arrays</h2>
+        
+        <table>
+            <tr>
+                <th>Método</th>
+                <th>Descripción</th>
+                <th>Modifica original</th>
+            </tr>
+            <tr>
+                <td><strong>push()</strong></td>
+                <td>Agrega elemento(s) al final</td>
+                <td>✅ Sí</td>
+            </tr>
+            <tr>
+                <td><strong>pop()</strong></td>
+                <td>Elimina el último elemento</td>
+                <td>✅ Sí</td>
+            </tr>
+            <tr>
+                <td><strong>unshift()</strong></td>
+                <td>Agrega elemento(s) al inicio</td>
+                <td>✅ Sí</td>
+            </tr>
+            <tr>
+                <td><strong>shift()</strong></td>
+                <td>Elimina el primer elemento</td>
+                <td>✅ Sí</td>
+            </tr>
+            <tr>
+                <td><strong>slice()</strong></td>
+                <td>Crea una copia de una porción</td>
+                <td>❌ No</td>
+            </tr>
+            <tr>
+                <td><strong>splice()</strong></td>
+                <td>Elimina/inserta elementos</td>
+                <td>✅ Sí</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SLIDE 7: EJEMPLOS DE MÉTODOS BÁSICOS -->
+    <div class="slide">
+        <h2>Métodos Básicos - Ejemplos</h2>
+        <div class="code-block">
+const numeros = [1, 2, 3];
+
+// push - agrega al final
+numeros.push(4);
+console.log(numeros);  // [1, 2, 3, 4]
+
+// pop - elimina el último
+const ultimo = numeros.pop();
+console.log(ultimo);    // 4
+console.log(numeros);   // [1, 2, 3]
+
+// unshift - agrega al inicio
+numeros.unshift(0);
+console.log(numeros);   // [0, 1, 2, 3]
+
+// shift - elimina el primero
+const primero = numeros.shift();
+console.log(primero);   // 0
+console.log(numeros);   // [1, 2, 3]
+
+// slice - copia una porción (no modifica original)
+const copia = numeros.slice(1, 3);
+console.log(copia);     // [2, 3]
+console.log(numeros);   // [1, 2, 3] (sin cambios)
+        </div>
+    </div>
+
+    <!-- SLIDE 8: MÉTODOS MODERNOS INTRO -->
+    <div class="slide">
+        <h2>🌟 Métodos Modernos de Arrays</h2>
+        <p style="font-size: 1.3em; margin-bottom: 30px;">Estos métodos son fundamentales y se usan constantemente en JavaScript moderno</p>
+        
+        <div class="three-columns">
+            <div class="method-box">
+                <h4>forEach</h4>
+                <p style="font-size: 0.95em;">Ejecuta una función para cada elemento</p>
+            </div>
+            <div class="method-box">
+                <h4>map</h4>
+                <p style="font-size: 0.95em;">Transforma cada elemento y retorna nuevo array</p>
+            </div>
+            <div class="method-box">
+                <h4>filter</h4>
+                <p style="font-size: 0.95em;">Filtra elementos según condición</p>
+            </div>
+            <div class="method-box">
+                <h4>find</h4>
+                <p style="font-size: 0.95em;">Encuentra el primer elemento que cumple condición</p>
+            </div>
+            <div class="method-box">
+                <h4>reduce</h4>
+                <p style="font-size: 0.95em;">Reduce el array a un único valor</p>
+            </div>
+            <div class="method-box">
+                <h4>some/every</h4>
+                <p style="font-size: 0.95em;">Verifican si algunos/todos cumplen condición</p>
+            </div>
+        </div>
+
+        <div class="tip" style="margin-top: 30px;">
+            <strong>💡 Importante:</strong> Todos estos métodos reciben una función como parámetro (callback)
+        </div>
+    </div>
+
+    <!-- SLIDE 9: FOREACH -->
+    <div class="slide">
+        <h2>forEach - Iterar sobre cada elemento</h2>
+        <div class="code-block">
+const numeros = [1, 2, 3, 4, 5];
+
+// forEach ejecuta una función para cada elemento
+numeros.forEach((numero) => {
+    console.log(numero * 2);
+});
+// Imprime: 2, 4, 6, 8, 10
+
+// Con index y array completo
+const frutas = ["manzana", "banana", "naranja"];
+frutas.forEach((fruta, index, arr) => {
+    console.log(`${index}: ${fruta}`);
+    console.log(`Array completo:`, arr);
+});
+        </div>
+
+        <div class="emphasis">
+            <strong>📌 Nota:</strong> forEach NO retorna nada, solo ejecuta código para cada elemento
+        </div>
+    </div>
+
+    <!-- SLIDE 10: MAP -->
+    <div class="slide">
+        <h2>map - Transformar elementos</h2>
+        <div class="code-block">
+const numeros = [1, 2, 3, 4, 5];
+
+// map crea un NUEVO array con los resultados
+const duplicados = numeros.map((num) => num * 2);
+console.log(duplicados);  // [2, 4, 6, 8, 10]
+console.log(numeros);     // [1, 2, 3, 4, 5] (sin cambios)
+
+// Transformar objetos
+const personas = [
+    { nombre: "Ana", edad: 25 },
+    { nombre: "Juan", edad: 30 }
+];
+
+const nombres = personas.map((persona) => persona.nombre);
+console.log(nombres);  // ["Ana", "Juan"]
+
+const conSaludo = personas.map((p) => `Hola ${p.nombre}`);
+console.log(conSaludo);  // ["Hola Ana", "Hola Juan"]
+        </div>
+
+        <div class="tip">
+            <strong>💡 Tip:</strong> Usá map cuando quieras transformar cada elemento y obtener un nuevo array
+        </div>
+    </div>
+
+    <!-- SLIDE 11: FILTER -->
+    <div class="slide">
+        <h2>filter - Filtrar elementos</h2>
+        <div class="code-block">
+const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// filter retorna un nuevo array con los elementos que cumplen la condición
+const pares = numeros.filter((num) => num % 2 === 0);
+console.log(pares);  // [2, 4, 6, 8, 10]
+
+const mayoresA5 = numeros.filter((num) => num > 5);
+console.log(mayoresA5);  // [6, 7, 8, 9, 10]
+
+// Filtrar objetos
+const productos = [
+    { nombre: "Laptop", precio: 1000 },
+    { nombre: "Mouse", precio: 25 },
+    { nombre: "Teclado", precio: 80 }
+];
+
+const caros = productos.filter((p) => p.precio > 50);
+console.log(caros);  
+// [{ nombre: "Laptop", precio: 1000 }, { nombre: "Teclado", precio: 80 }]
+        </div>
+
+        <div class="tip">
+            <strong>💡 Tip:</strong> filter retorna todos los elementos que hacen que la función retorne true
+        </div>
+    </div>
+
+    <!-- SLIDE 12: FIND -->
+    <div class="slide">
+        <h2>find - Encontrar un elemento</h2>
+        <div class="code-block">
+const numeros = [1, 2, 3, 4, 5];
+
+// find retorna el PRIMER elemento que cumple la condición
+const primerPar = numeros.find((num) => num % 2 === 0);
+console.log(primerPar);  // 2
+
+const mayorA10 = numeros.find((num) => num > 10);
+console.log(mayorA10);  // undefined (no encontró ninguno)
+
+// Encontrar en array de objetos
+const usuarios = [
+    { id: 1, nombre: "Ana" },
+    { id: 2, nombre: "Juan" },
+    { id: 3, nombre: "María" }
+];
+
+const usuario = usuarios.find((u) => u.id === 2);
+console.log(usuario);  // { id: 2, nombre: "Juan" }
+
+// También existe findIndex (retorna el índice)
+const indice = usuarios.findIndex((u) => u.id === 2);
+console.log(indice);  // 1
+        </div>
+    </div>
+
+    <!-- SLIDE 13: REDUCE -->
+    <div class="slide">
+        <h2>reduce - Reducir a un valor</h2>
+        <div class="code-block">
+const numeros = [1, 2, 3, 4, 5];
+
+// reduce combina todos los elementos en un único valor
+const suma = numeros.reduce((acumulador, numero) => {
+    return acumulador + numero;
+}, 0);  // 0 es el valor inicial del acumulador
+console.log(suma);  // 15
+
+// Forma corta
+const sumaCorta = numeros.reduce((acc, num) => acc + num, 0);
+
+// Encontrar el máximo
+const maximo = numeros.reduce((max, num) => {
+    return num > max ? num : max;
+}, numeros[0]);
+console.log(maximo);  // 5
+
+// Contar ocurrencias
+const frutas = ["manzana", "banana", "manzana", "naranja", "banana"];
+const conteo = frutas.reduce((acc, fruta) => {
+    acc[fruta] = (acc[fruta] || 0) + 1;
+    return acc;
+}, {});
+console.log(conteo);  // { manzana: 2, banana: 2, naranja: 1 }
+        </div>
+    </div>
+
+    <!-- SLIDE 14: COMBINANDO MÉTODOS -->
+    <div class="slide">
+        <h2>🔗 Encadenando Métodos (Chaining)</h2>
+        <p style="font-size: 1.2em; margin-bottom: 20px;">Podés combinar varios métodos uno tras otro</p>
+        
+        <div class="code-block">
+const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Filtrar pares, duplicarlos y sumarlos
+const resultado = numeros
+    .filter(num => num % 2 === 0)    // [2, 4, 6, 8, 10]
+    .map(num => num * 2)              // [4, 8, 12, 16, 20]
+    .reduce((sum, num) => sum + num, 0);  // 60
+
+console.log(resultado);  // 60
+
+// Ejemplo con objetos
+const productos = [
+    { nombre: "Laptop", precio: 1000, stock: 5 },
+    { nombre: "Mouse", precio: 25, stock: 0 },
+    { nombre: "Teclado", precio: 80, stock: 10 }
+];
+
+const total = productos
+    .filter(p => p.stock > 0)         // Solo con stock
+    .map(p => p.precio * p.stock)     // Precio total por producto
+    .reduce((sum, precio) => sum + precio, 0);  // Suma total
+
+console.log(total);  // 5800
+        </div>
+    </div>
+
+    <!-- SLIDE 15: OBJETOS - INTRODUCCIÓN -->
+    <div class="slide">
+        <h2>📋 Objetos (Objects)</h2>
+        <p style="font-size: 1.3em; margin-bottom: 20px;">Un objeto es una colección de propiedades (clave-valor)</p>
+        
+        <h3>Creación de Objetos</h3>
+        <div class="code-block">
+// Objeto literal (más común)
+const persona = {
+    nombre: "Ana",
+    edad: 25,
+    ciudad: "Buenos Aires",
+    esEstudiante: true
+};
+
+// Objeto vacío
+const vacio = {};
+
+// Con propiedades calculadas
+const prop = "apellido";
+const usuario = {
+    nombre: "Juan",
+    [prop]: "Pérez"  // apellido: "Pérez"
+};
+
+// Objetos pueden tener métodos
+const perro = {
+    nombre: "Firulais",
+    raza: "Labrador",
+    ladrar: function() {
+        console.log("Guau guau!");
+    }
+};
+        </div>
+    </div>
+
+    <!-- SLIDE 16: ACCESO A PROPIEDADES -->
+    <div class="slide">
+        <h2>Acceso a Propiedades de Objetos</h2>
+        <div class="code-block">
+const persona = {
+    nombre: "Ana",
+    edad: 25,
+    ciudad: "Buenos Aires"
+};
+
+// Dot notation (notación de punto) - más común
+console.log(persona.nombre);  // "Ana"
+console.log(persona.edad);    // 25
+
+// Bracket notation (notación de corchetes)
+console.log(persona["nombre"]);  // "Ana"
+console.log(persona["ciudad"]);  // "Buenos Aires"
+
+// Útil cuando la clave está en una variable
+const propiedad = "edad";
+console.log(persona[propiedad]);  // 25
+
+// Modificar propiedades
+persona.edad = 26;
+persona["ciudad"] = "Córdoba";
+
+// Agregar nuevas propiedades
+persona.profesion = "Desarrolladora";
+console.log(persona);
+// { nombre: "Ana", edad: 26, ciudad: "Córdoba", profesion: "Desarrolladora" }
+        </div>
+    </div>
+
+    <!-- SLIDE 17: MÉTODOS DE OBJETOS -->
+    <div class="slide">
+        <h2>Métodos dentro de Objetos</h2>
+        <div class="code-block">
+const persona = {
+    nombre: "Ana",
+    edad: 25,
+    
+    // Método tradicional
+    saludar: function() {
+        console.log(`Hola, soy ${this.nombre}`);
+    },
+    
+    // Método corto (ES6+)
+    despedir() {
+        console.log(`Chau! - ${this.nombre}`);
+    },
+    
+    // Arrow function (cuidado con 'this')
+    info: () => {
+        // 'this' NO funciona correctamente aquí
+        console.log("Información de la persona");
+    }
+};
+
+persona.saludar();   // "Hola, soy Ana"
+persona.despedir();  // "Chau! - Ana"
+        </div>
+
+        <div class="emphasis">
+            <strong>⚠️ Importante:</strong> Evitá usar arrow functions como métodos de objetos si necesitás usar 'this'
+        </div>
+    </div>
+
+    <!-- SLIDE 18: OBJECT METHODS -->
+    <div class="slide">
+        <h2>Object.keys, Object.values, Object.entries</h2>
+        <div class="code-block">
+const persona = {
+    nombre: "Ana",
+    edad: 25,
+    ciudad: "Buenos Aires"
+};
+
+// Object.keys - array de claves
+const claves = Object.keys(persona);
+console.log(claves);  // ["nombre", "edad", "ciudad"]
+
+// Object.values - array de valores
+const valores = Object.values(persona);
+console.log(valores);  // ["Ana", 25, "Buenos Aires"]
+
+// Object.entries - array de pares [clave, valor]
+const entradas = Object.entries(persona);
+console.log(entradas);  
+// [["nombre", "Ana"], ["edad", 25], ["ciudad", "Buenos Aires"]]
+
+// Iterar sobre un objeto
+Object.entries(persona).forEach(([clave, valor]) => {
+    console.log(`${clave}: ${valor}`);
+});
+// nombre: Ana
+// edad: 25
+// ciudad: Buenos Aires
+        </div>
+    </div>
+
+    <!-- SLIDE 19: DESTRUCTURING -->
+    <div class="slide">
+        <h2>Destructuring (Desestructuración)</h2>
+        <p style="font-size: 1.2em; margin-bottom: 20px;">Forma moderna de extraer valores de arrays y objetos</p>
+        
+        <h3>Destructuring de Arrays</h3>
+        <div class="code-block">
+const numeros = [1, 2, 3, 4, 5];
+
+// Sin destructuring
+const primero = numeros[0];
+const segundo = numeros[1];
+
+// Con destructuring
+const [a, b, c] = numeros;
+console.log(a);  // 1
+console.log(b);  // 2
+console.log(c);  // 3
+
+// Saltear elementos
+const [x, , z] = numeros;  // Saltea el segundo
+console.log(x);  // 1
+console.log(z);  // 3
+
+// Rest operator
+const [primero, ...resto] = numeros;
+console.log(primero);  // 1
+console.log(resto);    // [2, 3, 4, 5]
+        </div>
+    </div>
+
+    <!-- SLIDE 20: DESTRUCTURING DE OBJETOS -->
+    <div class="slide">
+        <h2>Destructuring de Objetos</h2>
+        <div class="code-block">
+const persona = {
+    nombre: "Ana",
+    edad: 25,
+    ciudad: "Buenos Aires",
+    profesion: "Desarrolladora"
+};
+
+// Sin destructuring
+const nombre = persona.nombre;
+const edad = persona.edad;
+
+// Con destructuring
+const { nombre, edad } = persona;
+console.log(nombre);  // "Ana"
+console.log(edad);    // 25
+
+// Renombrar variables
+const { nombre: nombrePersona, edad: años } = persona;
+console.log(nombrePersona);  // "Ana"
+console.log(años);           // 25
+
+// Valores por defecto
+const { nombre, pais = "Argentina" } = persona;
+console.log(pais);  // "Argentina"
+
+// Rest operator
+const { nombre, ...restoInfo } = persona;
+console.log(restoInfo);  
+// { edad: 25, ciudad: "Buenos Aires", profesion: "Desarrolladora" }
+        </div>
+    </div>
+
+    <!-- SLIDE 21: JSON -->
+    <div class="slide">
+        <h2>JSON (JavaScript Object Notation)</h2>
+        <p style="font-size: 1.2em; margin-bottom: 20px;">Formato estándar para intercambiar datos entre cliente y servidor</p>
+        
+        <div class="code-block">
+const persona = {
+    nombre: "Ana",
+    edad: 25,
+    hobbies: ["leer", "programar", "viajar"]
+};
+
+// Convertir objeto a JSON (string)
+const jsonString = JSON.stringify(persona);
+console.log(jsonString);
+// '{"nombre":"Ana","edad":25,"hobbies":["leer","programar","viajar"]}'
+
+console.log(typeof jsonString);  // "string"
+
+// Convertir JSON a objeto
+const objetoRecuperado = JSON.parse(jsonString);
+console.log(objetoRecuperado);
+// { nombre: "Ana", edad: 25, hobbies: ["leer", "programar", "viajar"] }
+
+console.log(typeof objetoRecuperado);  // "object"
+
+// JSON.stringify con formato bonito
+const jsonBonito = JSON.stringify(persona, null, 2);
+console.log(jsonBonito);
+        </div>
+    </div>
+
+    <!-- SLIDE 22: SPREAD OPERATOR -->
+    <div class="slide">
+        <h2>Spread Operator (...)</h2>
+        <p style="font-size: 1.2em; margin-bottom: 20px;">Operador para "expandir" arrays y objetos</p>
+        
+        <div class="code-block">
+// Spread con Arrays
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+
+const combinado = [...arr1, ...arr2];
+console.log(combinado);  // [1, 2, 3, 4, 5, 6]
+
+// Copiar array
+const copia = [...arr1];
+console.log(copia);  // [1, 2, 3]
+
+// Spread con Objetos
+const persona = { nombre: "Ana", edad: 25 };
+const direccion = { ciudad: "Buenos Aires", pais: "Argentina" };
+
+const personaCompleta = { ...persona, ...direccion };
+console.log(personaCompleta);
+// { nombre: "Ana", edad: 25, ciudad: "Buenos Aires", pais: "Argentina" }
+
+// Sobrescribir propiedades
+const actualizado = { ...persona, edad: 26, profesion: "Dev" };
+console.log(actualizado);
+// { nombre: "Ana", edad: 26, profesion: "Dev" }
+        </div>
+    </div>
+
+    <!-- SLIDE 23: EJEMPLO INTEGRADOR -->
+    <div class="slide">
+        <h2>🎯 Ejemplo Integrador</h2>
+        <div class="code-block">
+// Base de datos de estudiantes
+const estudiantes = [
+    { id: 1, nombre: "Ana", edad: 20, notas: [8, 9, 7] },
+    { id: 2, nombre: "Juan", edad: 22, notas: [6, 7, 8] },
+    { id: 3, nombre: "María", edad: 21, notas: [9, 10, 9] },
+    { id: 4, nombre: "Pedro", edad: 19, notas: [5, 6, 5] }
+];
+
+// Calcular promedio de cada estudiante
+const conPromedios = estudiantes.map(est => {
+    const promedio = est.notas.reduce((sum, nota) => sum + nota, 0) 
+                     / est.notas.length;
+    return { ...est, promedio };
+});
+
+// Filtrar aprobados (promedio >= 7)
+const aprobados = conPromedios.filter(est => est.promedio >= 7);
+
+// Obtener solo nombres de aprobados
+const nombresAprobados = aprobados.map(est => est.nombre);
+
+console.log(nombresAprobados);  // ["Ana", "María"]
+
+// Todo en una cadena
+const resultado = estudiantes
+    .map(e => ({ ...e, promedio: e.notas.reduce((s,n) => s+n, 0) / e.notas.length }))
+    .filter(e => e.promedio >= 7)
+    .map(e => e.nombre);
+        </div>
+    </div>
+
+    <!-- SLIDE 24: PRÁCTICA -->
+    <div class="slide">
+        <h2>🎯 A practicar!</h2>
+        <ul style="font-size: 1.2em;">
+            <li>Arrays y sus métodos</li>
+            <li>map, filter, reduce</li>
+            <li>Objetos y propiedades</li>
+            <li>Destructuring</li>
+            <li>JSON</li>
+        </ul>
+        <div class="emphasis" style="margin-top: 40px;">
+            <strong>Ejercicios en:</strong> clase2_ejercicios.html
+        </div>
+    </div>
+
+    <!-- SLIDE 25: RECAP -->
+    <div class="slide">
+        <h2>📝 Recap de la Clase 2</h2>
+        <ul>
+            <li><strong>Arrays:</strong> Listas ordenadas de valores</li>
+            <li><strong>Métodos básicos:</strong> push, pop, shift, unshift, slice, splice</li>
+            <li><strong>forEach:</strong> Itera sobre elementos</li>
+            <li><strong>map:</strong> Transforma elementos</li>
+            <li><strong>filter:</strong> Filtra elementos</li>
+            <li><strong>find:</strong> Encuentra un elemento</li>
+            <li><strong>reduce:</strong> Reduce a un único valor</li>
+            <li><strong>Objetos:</strong> Colecciones clave-valor</li>
+            <li><strong>Destructuring:</strong> Extraer valores fácilmente</li>
+            <li><strong>JSON:</strong> Formato de intercambio de datos</li>
+            <li><strong>Spread operator:</strong> Expandir arrays/objetos</li>
+        </ul>
+    </div>
+
+    <div class="navigation">
+        Atrás ← → Adelante
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.style.display = 'none');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].style.display = 'flex';
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') showSlide(currentSlide + 1);
+            if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+        });
+        
+        showSlide(0);
+    </script>
+</body>
+</html>
