@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 3 - Ejercicios Prácticos con Soluciones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #001E60 0%, #003080 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #001E60;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            background: #FFF9E6;
+            border-left: 5px solid #FFD700;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .instruction h3 {
+            color: #001E60;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .instruction p {
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+
+        .instruction ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        .instruction li {
+            margin: 8px 0;
+            font-size: 1.05em;
+        }
+
+        .instruction strong {
+            color: #001E60;
+        }
+
+        .exercise {
+            background: #f8f9fa;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .exercise h2 {
+            color: #001E60;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .easy { background: #d4edda; color: #155724; }
+        .medium { background: #fff3cd; color: #856404; }
+        .hard { background: #f8d7da; color: #721c24; }
+
+        .requirements {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .requirements h4 {
+            color: #001E60;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .solution {
+            background: white;
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .solution h4 {
+            color: #28a745;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .solution-toggle {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .solution-toggle:hover {
+            background: #218838;
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .solution-content.show {
+            display: block;
+        }
+
+        pre {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        pre code {
+            color: #333;
+        }
+
+        .hint {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .hint strong {
+            color: #2196F3;
+        }
+
+        .artech-logo-container {
+            text-align: end;
+            margin-bottom: 20px;
+        }
+
+        .tip {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .tip strong {
+            color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="artech-logo-container">
+            <img src="./artech-logo.png" alt="Artech Logo" style="width: 150px; height: 30px;">
+        </div>
+
+        <h1>🎯 Ejercicios Prácticos</h1>
+        <p class="subtitle">Clase 3 - HTML, CSS y DOM</p>
+        
+        <div class="instruction">
+            <h3>📋 Instrucciones</h3>
+            <p><strong>Para estos ejercicios, vas a necesitar crear archivos HTML separados.</strong> Cada ejercicio debe estar en su propio archivo.</p>
+            <ol>
+                <li>Creá un archivo HTML (ej: ejercicio1.html)</li>
+                <li>Escribí el HTML necesario en el &lt;body&gt;</li>
+                <li>Agregá tu código JavaScript en un &lt;script&gt; al final del body</li>
+                <li>Abrí el archivo en tu navegador y probá que funcione</li>
+            </ol>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Podés usar Visual Studio Code o cualquier editor de texto para crear tus archivos HTML.
+            </div>
+        </div>
+
+        <!-- EJERCICIO 1 -->
+        <div class="exercise">
+            <h2>Ejercicio 1: Cambiar Texto</h2>
+            <span class="difficulty easy">⭐ Fácil</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una página que tenga:</p>
+                <ul>
+                    <li>Un título (h1) que diga "Hola Mundo"</li>
+                    <li>Un botón que diga "Cambiar Texto"</li>
+                    <li>Al hacer click, el título debe cambiar a "¡Texto Cambiado!"</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Usá <code>getElementById()</code> y cambiá la propiedad <code>textContent</code>
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol1')">
+                Ver Solución
+            </button>
+            
+            <div id="sol1" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 1&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 id="titulo"&gt;Hola Mundo&lt;/h1&gt;
+    &lt;button onclick="cambiarTexto()"&gt;Cambiar Texto&lt;/button&gt;
+
+    &lt;script&gt;
+        function cambiarTexto() {
+            const titulo = document.getElementById('titulo');
+            titulo.textContent = '¡Texto Cambiado!';
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 2 -->
+        <div class="exercise">
+            <h2>Ejercicio 2: Cambiar Colores</h2>
+            <span class="difficulty easy">⭐ Fácil</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una página con:</p>
+                <ul>
+                    <li>Un div con texto adentro</li>
+                    <li>Un botón "Cambiar Color"</li>
+                    <li>Al hacer click, el fondo del div debe cambiar a azul</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Usá <code>style.backgroundColor</code>
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol2')">
+                Ver Solución
+            </button>
+            
+            <div id="sol2" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 2&lt;/title&gt;
+    &lt;style&gt;
+        #miDiv {
+            padding: 20px;
+            border: 2px solid black;
+            margin: 20px 0;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="miDiv"&gt;Este es mi div&lt;/div&gt;
+    &lt;button onclick="cambiarColor()"&gt;Cambiar Color&lt;/button&gt;
+
+    &lt;script&gt;
+        function cambiarColor() {
+            const div = document.getElementById('miDiv');
+            div.style.backgroundColor = 'blue';
+            div.style.color = 'white'; // Para que se vea el texto
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 3 -->
+        <div class="exercise">
+            <h2>Ejercicio 3: Mostrar/Ocultar</h2>
+            <span class="difficulty easy">⭐ Fácil</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una página con:</p>
+                <ul>
+                    <li>Un párrafo con texto</li>
+                    <li>Un botón "Ocultar"</li>
+                    <li>Al hacer click, el párrafo debe desaparecer</li>
+                    <li><strong>Bonus:</strong> Que el botón cambie entre "Ocultar" y "Mostrar"</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Usá <code>style.display = 'none'</code> o <code>style.display = 'block'</code>
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol3')">
+                Ver Solución
+            </button>
+            
+            <div id="sol3" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 3&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p id="parrafo"&gt;Este es un párrafo que puedes ocultar&lt;/p&gt;
+    &lt;button id="boton" onclick="toggleParrafo()"&gt;Ocultar&lt;/button&gt;
+
+    &lt;script&gt;
+        function toggleParrafo() {
+            const parrafo = document.getElementById('parrafo');
+            const boton = document.getElementById('boton');
+            
+            if (parrafo.style.display === 'none') {
+                parrafo.style.display = 'block';
+                boton.textContent = 'Ocultar';
+            } else {
+                parrafo.style.display = 'none';
+                boton.textContent = 'Mostrar';
+            }
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 4 -->
+        <div class="exercise">
+            <h2>Ejercicio 4: Contador de Clicks</h2>
+            <span class="difficulty medium">⭐⭐ Medio</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una página con:</p>
+                <ul>
+                    <li>Un párrafo que muestre "Clicks: 0"</li>
+                    <li>Un botón "Incrementar"</li>
+                    <li>Cada vez que hagas click, el número debe aumentar en 1</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Necesitás una variable para guardar el contador
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol4')">
+                Ver Solución
+            </button>
+            
+            <div id="sol4" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 4&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p id="contador"&gt;Clicks: 0&lt;/p&gt;
+    &lt;button onclick="incrementar()"&gt;Incrementar&lt;/button&gt;
+
+    &lt;script&gt;
+        let clicks = 0;
+
+        function incrementar() {
+            clicks++;
+            document.getElementById('contador').textContent = 'Clicks: ' + clicks;
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 5 -->
+        <div class="exercise">
+            <h2>Ejercicio 5: Cambiar Imagen</h2>
+            <span class="difficulty medium">⭐⭐ Medio</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una página con:</p>
+                <ul>
+                    <li>Una imagen (podés usar cualquier URL de imagen de internet)</li>
+                    <li>Un botón "Cambiar Imagen"</li>
+                    <li>Al hacer click, la imagen debe cambiar a otra diferente</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Las imágenes tienen un atributo <code>src</code> que podés modificar
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol5')">
+                Ver Solución
+            </button>
+            
+            <div id="sol5" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 5&lt;/title&gt;
+    &lt;style&gt;
+        img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border: 3px solid black;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;img id="miImagen" src="https://picsum.photos/300/200?random=1" alt="Imagen"&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;button onclick="cambiarImagen()"&gt;Cambiar Imagen&lt;/button&gt;
+
+    &lt;script&gt;
+        let imagenActual = 1;
+
+        function cambiarImagen() {
+            const imagen = document.getElementById('miImagen');
+            imagenActual = imagenActual === 1 ? 2 : 1;
+            imagen.src = `https://picsum.photos/300/200?random=${imagenActual}`;
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 6 -->
+        <div class="exercise">
+            <h2>Ejercicio 6: Input y Saludo</h2>
+            <span class="difficulty medium">⭐⭐ Medio</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una página con:</p>
+                <ul>
+                    <li>Un input de texto para ingresar un nombre</li>
+                    <li>Un botón "Saludar"</li>
+                    <li>Un párrafo vacío</li>
+                    <li>Al hacer click, el párrafo debe mostrar "Hola [nombre]!"</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Usá <code>input.value</code> para obtener el texto del input
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol6')">
+                Ver Solución
+            </button>
+            
+            <div id="sol6" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 6&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input type="text" id="nombre" placeholder="Ingresa tu nombre"&gt;
+    &lt;button onclick="saludar()"&gt;Saludar&lt;/button&gt;
+    &lt;p id="saludo"&gt;&lt;/p&gt;
+
+    &lt;script&gt;
+        function saludar() {
+            const nombre = document.getElementById('nombre').value;
+            const saludo = document.getElementById('saludo');
+            
+            if (nombre.trim() === '') {
+                saludo.textContent = 'Por favor ingresa un nombre';
+            } else {
+                saludo.textContent = `Hola ${nombre}!`;
+            }
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 7 -->
+        <div class="exercise">
+            <h2>Ejercicio 7: Calculadora Básica</h2>
+            <span class="difficulty medium">⭐⭐ Medio</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una calculadora simple con:</p>
+                <ul>
+                    <li>Dos inputs para ingresar números</li>
+                    <li>Cuatro botones: +, -, ×, ÷</li>
+                    <li>Un párrafo que muestre el resultado</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Convertí los valores de los inputs a números con <code>parseFloat()</code>
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol7')">
+                Ver Solución
+            </button>
+            
+            <div id="sol7" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 7&lt;/title&gt;
+    &lt;style&gt;
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            margin: 5px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Calculadora Básica&lt;/h2&gt;
+    &lt;input type="number" id="num1" placeholder="Primer número"&gt;
+    &lt;input type="number" id="num2" placeholder="Segundo número"&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;button onclick="calcular('+')"&gt;+&lt;/button&gt;
+    &lt;button onclick="calcular('-')"&gt;-&lt;/button&gt;
+    &lt;button onclick="calcular('*')"&gt;×&lt;/button&gt;
+    &lt;button onclick="calcular('/')"&gt;÷&lt;/button&gt;
+    &lt;p id="resultado"&gt;&lt;/p&gt;
+
+    &lt;script&gt;
+        function calcular(operacion) {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const resultado = document.getElementById('resultado');
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                resultado.textContent = 'Por favor ingresa números válidos';
+                return;
+            }
+            
+            let res;
+            switch(operacion) {
+                case '+':
+                    res = num1 + num2;
+                    break;
+                case '-':
+                    res = num1 - num2;
+                    break;
+                case '*':
+                    res = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 === 0) {
+                        resultado.textContent = 'No se puede dividir por cero';
+                        return;
+                    }
+                    res = num1 / num2;
+                    break;
+            }
+            
+            resultado.textContent = `Resultado: ${res}`;
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 8 -->
+        <div class="exercise">
+            <h2>Ejercicio 8: Lista de Tareas</h2>
+            <span class="difficulty hard">⭐⭐⭐ Difícil</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una lista de tareas con:</p>
+                <ul>
+                    <li>Un input para ingresar una tarea</li>
+                    <li>Un botón "Agregar"</li>
+                    <li>Una lista (ul) donde se agreguen las tareas</li>
+                    <li>Cada tarea debe aparecer como un elemento de lista (li)</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Usá <code>createElement()</code> y <code>appendChild()</code>
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol8')">
+                Ver Solución
+            </button>
+            
+            <div id="sol8" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 8&lt;/title&gt;
+    &lt;style&gt;
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f0f0f0;
+            border-left: 3px solid #001E60;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Mi Lista de Tareas&lt;/h2&gt;
+    &lt;input type="text" id="tarea" placeholder="Ingresa una tarea"&gt;
+    &lt;button onclick="agregarTarea()"&gt;Agregar&lt;/button&gt;
+    &lt;ul id="listaTareas"&gt;&lt;/ul&gt;
+
+    &lt;script&gt;
+        function agregarTarea() {
+            const input = document.getElementById('tarea');
+            const lista = document.getElementById('listaTareas');
+            const textoTarea = input.value.trim();
+            
+            if (textoTarea === '') {
+                alert('Por favor ingresa una tarea');
+                return;
+            }
+            
+            // Crear nuevo elemento li
+            const li = document.createElement('li');
+            li.textContent = textoTarea;
+            
+            // Agregar a la lista
+            lista.appendChild(li);
+            
+            // Limpiar el input
+            input.value = '';
+        }
+
+        // Bonus: permitir agregar con Enter
+        document.getElementById('tarea').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                agregarTarea();
+            }
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 9 -->
+        <div class="exercise">
+            <h2>Ejercicio 9: Cambiar Estilos</h2>
+            <span class="difficulty medium">⭐⭐ Medio</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una página con:</p>
+                <ul>
+                    <li>Un div con texto</li>
+                    <li>Tres botones: "Rojo", "Verde", "Azul"</li>
+                    <li>Cada botón debe cambiar el color del texto del div</li>
+                    <li><strong>Bonus:</strong> Agregá un botón que cambie el tamaño de la fuente</li>
+                </ul>
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol9')">
+                Ver Solución
+            </button>
+            
+            <div id="sol9" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 9&lt;/title&gt;
+    &lt;style&gt;
+        #texto {
+            padding: 20px;
+            border: 2px solid black;
+            margin: 20px 0;
+            font-size: 20px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="texto"&gt;Este texto puede cambiar de color&lt;/div&gt;
+    &lt;button onclick="cambiarColor('red')"&gt;Rojo&lt;/button&gt;
+    &lt;button onclick="cambiarColor('green')"&gt;Verde&lt;/button&gt;
+    &lt;button onclick="cambiarColor('blue')"&gt;Azul&lt;/button&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;button onclick="cambiarTamaño()"&gt;Cambiar Tamaño&lt;/button&gt;
+
+    &lt;script&gt;
+        function cambiarColor(color) {
+            document.getElementById('texto').style.color = color;
+        }
+
+        let tamaño = 20;
+        function cambiarTamaño() {
+            tamaño = tamaño === 20 ? 30 : 20;
+            document.getElementById('texto').style.fontSize = tamaño + 'px';
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 10 -->
+        <div class="exercise">
+            <h2>Ejercicio 10: Validación de Formulario</h2>
+            <span class="difficulty hard">⭐⭐⭐ Difícil</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá un formulario de registro con:</p>
+                <ul>
+                    <li>Input para nombre (mínimo 3 caracteres)</li>
+                    <li>Input para email (debe contener @)</li>
+                    <li>Input para edad (debe ser mayor a 18)</li>
+                    <li>Un botón "Registrar"</li>
+                    <li>Validá cada campo y mostrá mensajes de error si algo está mal</li>
+                </ul>
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol10')">
+                Ver Solución
+            </button>
+            
+            <div id="sol10" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 10&lt;/title&gt;
+    &lt;style&gt;
+        .formulario {
+            max-width: 400px;
+            padding: 20px;
+            border: 2px solid #001E60;
+            border-radius: 10px;
+        }
+        .campo {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+        .exito {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="formulario"&gt;
+        &lt;h2&gt;Formulario de Registro&lt;/h2&gt;
+        
+        &lt;div class="campo"&gt;
+            &lt;label for="nombre"&gt;Nombre:&lt;/label&gt;
+            &lt;input type="text" id="nombre"&gt;
+            &lt;div id="errorNombre" class="error"&gt;El nombre debe tener al menos 3 caracteres&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="campo"&gt;
+            &lt;label for="email"&gt;Email:&lt;/label&gt;
+            &lt;input type="text" id="email"&gt;
+            &lt;div id="errorEmail" class="error"&gt;El email debe contener @&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="campo"&gt;
+            &lt;label for="edad"&gt;Edad:&lt;/label&gt;
+            &lt;input type="number" id="edad"&gt;
+            &lt;div id="errorEdad" class="error"&gt;Debes ser mayor de 18 años&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;button onclick="validarFormulario()"&gt;Registrar&lt;/button&gt;
+        
+        &lt;div id="mensajeExito" class="exito"&gt;
+            ¡Registro exitoso!
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        function validarFormulario() {
+            // Obtener valores
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const edad = parseInt(document.getElementById('edad').value);
+            
+            // Ocultar todos los errores
+            document.querySelectorAll('.error').forEach(e => e.style.display = 'none');
+            document.getElementById('mensajeExito').style.display = 'none';
+            
+            let valido = true;
+            
+            // Validar nombre
+            if (nombre.length < 3) {
+                document.getElementById('errorNombre').style.display = 'block';
+                valido = false;
+            }
+            
+            // Validar email
+            if (!email.includes('@')) {
+                document.getElementById('errorEmail').style.display = 'block';
+                valido = false;
+            }
+            
+            // Validar edad
+            if (isNaN(edad) || edad < 18) {
+                document.getElementById('errorEdad').style.display = 'block';
+                valido = false;
+            }
+            
+            // Si todo es válido
+            if (valido) {
+                document.getElementById('mensajeExito').style.display = 'block';
+                // Limpiar formulario
+                document.getElementById('nombre').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('edad').value = '';
+            }
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 11 -->
+        <div class="exercise">
+            <h2>Ejercicio 11: Semáforo</h2>
+            <span class="difficulty medium">⭐⭐ Medio</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá un semáforo simple:</p>
+                <ul>
+                    <li>Tres divs circulares (rojo, amarillo, verde)</li>
+                    <li>Un botón "Siguiente"</li>
+                    <li>Al hacer click, debe encenderse la siguiente luz (y apagarse la anterior)</li>
+                    <li>El orden es: Rojo → Amarillo → Verde → Rojo...</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Usá una variable para guardar el estado actual del semáforo
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol11')">
+                Ver Solución
+            </button>
+            
+            <div id="sol11" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 11&lt;/title&gt;
+    &lt;style&gt;
+        .semaforo {
+            width: 120px;
+            background: #333;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px auto;
+        }
+        .luz {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 15px auto;
+            background: #555;
+        }
+        .rojo.encendido { background: red; }
+        .amarillo.encendido { background: yellow; }
+        .verde.encendido { background: lime; }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="semaforo"&gt;
+        &lt;div id="rojo" class="luz rojo encendido"&gt;&lt;/div&gt;
+        &lt;div id="amarillo" class="luz amarillo"&gt;&lt;/div&gt;
+        &lt;div id="verde" class="luz verde"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button onclick="siguiente()"&gt;Siguiente&lt;/button&gt;
+
+    &lt;script&gt;
+        let estadoActual = 'rojo';
+
+        function siguiente() {
+            // Apagar todas las luces
+            document.getElementById('rojo').classList.remove('encendido');
+            document.getElementById('amarillo').classList.remove('encendido');
+            document.getElementById('verde').classList.remove('encendido');
+            
+            // Cambiar estado y encender luz correspondiente
+            if (estadoActual === 'rojo') {
+                estadoActual = 'amarillo';
+                document.getElementById('amarillo').classList.add('encendido');
+            } else if (estadoActual === 'amarillo') {
+                estadoActual = 'verde';
+                document.getElementById('verde').classList.add('encendido');
+            } else {
+                estadoActual = 'rojo';
+                document.getElementById('rojo').classList.add('encendido');
+            }
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 12 -->
+        <div class="exercise">
+            <h2>Ejercicio 12: Cambiar Clases CSS</h2>
+            <span class="difficulty medium">⭐⭐ Medio</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una página con:</p>
+                <ul>
+                    <li>Un div con texto</li>
+                    <li>Define 3 clases CSS diferentes con estilos distintos</li>
+                    <li>Tres botones que cambien la clase del div</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Usá <code>classList.remove()</code> y <code>classList.add()</code>
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol12')">
+                Ver Solución
+            </button>
+            
+            <div id="sol12" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 12&lt;/title&gt;
+    &lt;style&gt;
+        .caja {
+            padding: 30px;
+            margin: 20px;
+            border: 3px solid black;
+            text-align: center;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        .estilo1 {
+            background: lightblue;
+            color: darkblue;
+            border-radius: 0;
+        }
+        .estilo2 {
+            background: lightgreen;
+            color: darkgreen;
+            border-radius: 20px;
+        }
+        .estilo3 {
+            background: lightcoral;
+            color: darkred;
+            border-radius: 50%;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="caja" class="caja estilo1"&gt;
+        Este es mi div con estilos
+    &lt;/div&gt;
+    
+    &lt;button onclick="cambiarEstilo('estilo1')"&gt;Estilo 1&lt;/button&gt;
+    &lt;button onclick="cambiarEstilo('estilo2')"&gt;Estilo 2&lt;/button&gt;
+    &lt;button onclick="cambiarEstilo('estilo3')"&gt;Estilo 3&lt;/button&gt;
+
+    &lt;script&gt;
+        function cambiarEstilo(nuevoEstilo) {
+            const caja = document.getElementById('caja');
+            
+            // Remover todas las clases de estilo
+            caja.classList.remove('estilo1', 'estilo2', 'estilo3');
+            
+            // Agregar la nueva clase
+            caja.classList.add(nuevoEstilo);
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 13 -->
+        <div class="exercise">
+            <h2>Ejercicio 13: Generador de Colores Random</h2>
+            <span class="difficulty hard">⭐⭐⭐ Difícil</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá una página con:</p>
+                <ul>
+                    <li>Un div grande con color de fondo</li>
+                    <li>Un botón "Generar Color"</li>
+                    <li>Al hacer click, el fondo del div debe cambiar a un color aleatorio</li>
+                    <li>Mostrá el código del color (ej: #A3F2B4)</li>
+                </ul>
+            </div>
+
+            <div class="hint">
+                <strong>💡 Pista:</strong> Los colores hexadecimales usan números del 0-9 y letras A-F. Usá <code>Math.random()</code>
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol13')">
+                Ver Solución
+            </button>
+            
+            <div id="sol13" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 13&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #colorBox {
+            width: 400px;
+            height: 400px;
+            margin: 20px auto;
+            border: 3px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Generador de Colores&lt;/h1&gt;
+    &lt;div id="colorBox"&gt;#FFFFFF&lt;/div&gt;
+    &lt;button onclick="generarColor()"&gt;Generar Color&lt;/button&gt;
+
+    &lt;script&gt;
+        function generarColor() {
+            // Generar color hexadecimal aleatorio
+            const letras = '0123456789ABCDEF';
+            let color = '#';
+            
+            for (let i = 0; i < 6; i++) {
+                const indiceAleatorio = Math.floor(Math.random() * 16);
+                color += letras[indiceAleatorio];
+            }
+            
+            // Aplicar el color
+            const caja = document.getElementById('colorBox');
+            caja.style.backgroundColor = color;
+            caja.textContent = color;
+        }
+
+        // Generar un color inicial
+        generarColor();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 14 -->
+        <div class="exercise">
+            <h2>Ejercicio 14: Mini Juego de Adivinanza</h2>
+            <span class="difficulty hard">⭐⭐⭐ Difícil</span>
+            
+            <div class="requirements">
+                <h4>📝 Consigna:</h4>
+                <p>Creá un juego de adivinanza:</p>
+                <ul>
+                    <li>El programa genera un número aleatorio entre 1 y 10</li>
+                    <li>Un input para que el usuario ingrese su intento</li>
+                    <li>Un botón "Adivinar"</li>
+                    <li>Mostrá mensajes: "Muy alto", "Muy bajo", o "¡Correcto!"</li>
+                    <li>Contá cuántos intentos llevó</li>
+                </ul>
+            </div>
+
+            <button class="solution-toggle" onclick="toggleSolution('sol14')">
+                Ver Solución
+            </button>
+            
+            <div id="sol14" class="solution-content">
+                <div class="solution">
+                    <h4>✅ Solución:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 14&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        .juego {
+            background: #f0f0f0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        input {
+            padding: 10px;
+            font-size: 18px;
+            width: 80px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #001E60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #003080;
+        }
+        #mensaje {
+            margin: 20px 0;
+            font-size: 20px;
+            font-weight: bold;
+            min-height: 30px;
+        }
+        .correcto { color: green; }
+        .incorrecto { color: red; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="juego"&gt;
+        &lt;h1&gt;Juego de Adivinanza&lt;/h1&gt;
+        &lt;p&gt;Adivina el número entre 1 y 10&lt;/p&gt;
+        
+        &lt;input type="number" id="intento" min="1" max="10" placeholder="?"&gt;
+        &lt;br&gt;
+        &lt;button onclick="adivinar()"&gt;Adivinar&lt;/button&gt;
+        &lt;button onclick="reiniciar()"&gt;Nuevo Juego&lt;/button&gt;
+        
+        &lt;div id="mensaje"&gt;&lt;/div&gt;
+        &lt;div id="intentos"&gt;Intentos: 0&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        let numeroSecreto;
+        let cantidadIntentos = 0;
+
+        function iniciarJuego() {
+            numeroSecreto = Math.floor(Math.random() * 10) + 1;
+            cantidadIntentos = 0;
+            document.getElementById('mensaje').textContent = '';
+            document.getElementById('mensaje').className = '';
+            document.getElementById('intentos').textContent = 'Intentos: 0';
+            document.getElementById('intento').value = '';
+            document.getElementById('intento').disabled = false;
+        }
+
+        function adivinar() {
+            const intento = parseInt(document.getElementById('intento').value);
+            const mensaje = document.getElementById('mensaje');
+            
+            if (isNaN(intento) || intento < 1 || intento > 10) {
+                mensaje.textContent = 'Por favor ingresa un número entre 1 y 10';
+                mensaje.className = '';
+                return;
+            }
+            
+            cantidadIntentos++;
+            document.getElementById('intentos').textContent = `Intentos: ${cantidadIntentos}`;
+            
+            if (intento === numeroSecreto) {
+                mensaje.textContent = `¡CORRECTO! Lo lograste en ${cantidadIntentos} intentos`;
+                mensaje.className = 'correcto';
+                document.getElementById('intento').disabled = true;
+            } else if (intento < numeroSecreto) {
+                mensaje.textContent = 'Muy bajo, intenta con un número mayor';
+                mensaje.className = 'incorrecto';
+            } else {
+                mensaje.textContent = 'Muy alto, intenta con un número menor';
+                mensaje.className = 'incorrecto';
+            }
+            
+            document.getElementById('intento').value = '';
+            document.getElementById('intento').focus();
+        }
+
+        function reiniciar() {
+            iniciarJuego();
+        }
+
+        // Permitir adivinar con Enter
+        document.getElementById('intento').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                adivinar();
+            }
+        });
+
+        // Iniciar juego al cargar la página
+        iniciarJuego();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+            const solution = document.getElementById(id);
+            solution.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

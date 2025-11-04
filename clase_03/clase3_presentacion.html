@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 3 - HTML, CSS y DOM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #001E60 0%, #373737 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: white;
+            margin: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            color: #001E60;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2.5em;
+            color: #535353;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 1.8em;
+            color: #001E60;
+            margin: 25px 0 15px 0;
+        }
+        
+        p, li {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #001E60;
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 20px 0;
+            overflow-x: auto;
+            width: 100%;
+            max-width: 900px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.5;
+            tab-size: 2;
+            -moz-tab-size: 2;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px 0;
+        }
+        
+        .comparison-box {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid #001E60;
+        }
+        
+        .comparison-box h4 {
+            color: #535353;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .emphasis {
+            background: #fff3cd;
+            padding: 20px;
+            border-left: 5px solid #ffc107;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .tip {
+            background: #d4edda;
+            padding: 20px;
+            border-left: 5px solid #28a745;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #001E60;
+            padding: 15px 25px;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        table {
+            width: 100%;
+            max-width: 900px;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        th {
+            background: #001E60;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .intro-icon {
+            font-size: 5em;
+            margin: 20px 0;
+        }
+
+        .demo-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #001E60;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .demo-box button {
+            background: #001E60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 5px;
+        }
+
+        .demo-box button:hover {
+            background: #003080;
+        }
+
+        .demo-box input {
+            padding: 10px;
+            border: 2px solid #001E60;
+            border-radius: 5px;
+            font-size: 1em;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <img src="./artech-logo.png" alt="" style="position: fixed; top: 50px; right: 50px; width: 150px; height: 30px;">
+
+    <!-- SLIDE 1: PORTADA -->
+    <div class="slide">
+        <div class="intro-icon">🌐</div>
+        <h1>Capacitación de Javascript</h1>
+        <p class="subtitle">Clase 3 - HTML, CSS y DOM</p>
+        <p style="font-size: 1.2em; margin-top: 40px;">Creando interfaces web interactivas</p>
+    </div>
+
+    <!-- SLIDE 2: REPASO CLASE 2 -->
+    <div class="slide">
+        <h2>📝 Repaso Rápido - Clase 2</h2>
+        <div style="max-width: 900px;">
+            <ul>
+                <li><strong>Arrays:</strong> push, pop, shift, unshift, slice, splice</li>
+                <li><strong>forEach:</strong> iterar sobre elementos</li>
+                <li><strong>map:</strong> transformar elementos</li>
+                <li><strong>filter:</strong> filtrar elementos</li>
+                <li><strong>reduce:</strong> reducir a un valor único</li>
+                <li><strong>Objetos:</strong> propiedades y métodos</li>
+                <li><strong>Destructuring:</strong> extraer valores fácilmente</li>
+            </ul>
+        </div>
+        <div class="tip" style="margin-top: 30px;">
+            <strong>💡 Hoy:</strong> Vamos a usar todo esto para manipular páginas web reales
+        </div>
+    </div>
+
+    <!-- SLIDE 3: QUÉ VEREMOS HOY -->
+    <div class="slide">
+        <h2>🎯 ¿Qué vamos a ver hoy?</h2>
+        <ul style="font-size: 1.4em;">
+            <li><strong>HTML:</strong> Estructura básica de una página web</li>
+            <li><strong>CSS:</strong> Darle estilo a nuestras páginas</li>
+            <li><strong>DOM:</strong> Document Object Model (el puente entre HTML y JS)</li>
+            <li><strong>Manipulación:</strong> Cambiar contenido, estilos y estructura</li>
+            <li><strong>Eventos:</strong> Hacer que la página responda a acciones del usuario</li>
+        </ul>
+        <div class="emphasis" style="margin-top: 40px;">
+            <strong>Objetivo:</strong> Al final de hoy, van a poder crear páginas web interactivas desde cero
+        </div>
+    </div>
+
+    <!-- SLIDE 4: HTML BÁSICO -->
+    <div class="slide">
+        <h2>📄 HTML - HyperText Markup Language</h2>
+        <p style="font-size: 1.3em; margin-bottom: 20px;">HTML es el esqueleto de toda página web</p>
+        
+        <h3>Estructura Básica</h3>
+        <div class="code-block">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Primera Página</title>
+</head>
+<body>
+  <h1>Hola Mundo</h1>
+  <p>Este es mi primer párrafo</p>
+</body>
+</html>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Estructura:</strong> head (metadatos) + body (contenido visible)
+        </div>
+    </div>
+
+    <!-- SLIDE 5: TAGS HTML ESENCIALES -->
+    <div class="slide">
+        <h2>Tags HTML Esenciales</h2>
+        
+        <table>
+            <tr>
+                <th>Tag</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+            </tr>
+            <tr>
+                <td><code>&lt;div&gt;</code></td>
+                <td>Contenedor genérico</td>
+                <td><code>&lt;div&gt;Contenido&lt;/div&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;p&gt;</code></td>
+                <td>Párrafo</td>
+                <td><code>&lt;p&gt;Texto&lt;/p&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;h1&gt; - &lt;h6&gt;</code></td>
+                <td>Títulos (1=más grande)</td>
+                <td><code>&lt;h1&gt;Título&lt;/h1&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;button&gt;</code></td>
+                <td>Botón</td>
+                <td><code>&lt;button&gt;Click&lt;/button&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;input&gt;</code></td>
+                <td>Campo de entrada</td>
+                <td><code>&lt;input type="text"&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;span&gt;</code></td>
+                <td>Contenedor en línea</td>
+                <td><code>&lt;span&gt;Texto&lt;/span&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;ul&gt;/&lt;li&gt;</code></td>
+                <td>Lista no ordenada</td>
+                <td><code>&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</code></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SLIDE 6: ATRIBUTOS HTML -->
+    <div class="slide">
+        <h2>Atributos HTML Importantes</h2>
+        
+        <h3>id y class</h3>
+        <div class="code-block">
+<!-- id: único, para identificar UN elemento -->
+<div id="contenedor-principal">Contenido</div>
+
+<!-- class: reutilizable, para agrupar elementos -->
+<p class="texto-destacado">Párrafo 1</p>
+<p class="texto-destacado">Párrafo 2</p>
+        </div>
+
+        <div class="comparison">
+            <div class="comparison-box">
+                <h4>id</h4>
+                <ul style="font-size: 0.9em;">
+                    <li>Único por página</li>
+                    <li>Se usa con #</li>
+                    <li>Para identificar elementos específicos</li>
+                </ul>
+            </div>
+            <div class="comparison-box">
+                <h4>class</h4>
+                <ul style="font-size: 0.9em;">
+                    <li>Reutilizable</li>
+                    <li>Se usa con .</li>
+                    <li>Para agrupar elementos similares</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: CSS BÁSICO -->
+    <div class="slide">
+        <h2>🎨 CSS - Cascading Style Sheets</h2>
+        <p style="font-size: 1.3em; margin-bottom: 20px;">CSS le da estilo y apariencia a nuestro HTML</p>
+        
+        <h3>Tres Formas de Aplicar CSS</h3>
+        <div class="code-block">
+<!-- 1. Inline (dentro del tag) -->
+<p style="color: red;">Texto rojo</p>
+
+<!-- 2. Interno (en el head) -->
+<style>
+  p { color: blue; }
+</style>
+
+<!-- 3. Externo (archivo separado) - LA MEJOR -->
+<link rel="stylesheet" href="estilos.css">
+        </div>
+    </div>
+
+    <!-- SLIDE 8: SELECTORES CSS -->
+    <div class="slide">
+        <h2>Selectores CSS</h2>
+        
+        <div class="code-block">
+/* Selector de tag (todos los p) */
+p {
+  color: blue;
+}
+
+/* Selector de class (con .) */
+.texto-destacado {
+  font-weight: bold;
+  color: red;
+}
+
+/* Selector de id (con #) */
+#titulo-principal {
+  font-size: 32px;
+  text-align: center;
+}
+
+/* Selector descendiente */
+div p {
+  margin: 10px;
+}
+        </div>
+
+        <div class="tip">
+            <strong>💡 Regla:</strong> Tag sin nada, class con punto (.), id con numeral (#)
+        </div>
+    </div>
+
+    <!-- SLIDE 9: PROPIEDADES CSS COMUNES -->
+    <div class="slide">
+        <h2>Propiedades CSS Más Usadas</h2>
+        
+        <table>
+            <tr>
+                <th>Propiedad</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+            </tr>
+            <tr>
+                <td><code>color</code></td>
+                <td>Color del texto</td>
+                <td><code>color: red;</code></td>
+            </tr>
+            <tr>
+                <td><code>background</code></td>
+                <td>Color de fondo</td>
+                <td><code>background: blue;</code></td>
+            </tr>
+            <tr>
+                <td><code>font-size</code></td>
+                <td>Tamaño de letra</td>
+                <td><code>font-size: 20px;</code></td>
+            </tr>
+            <tr>
+                <td><code>padding</code></td>
+                <td>Espacio interno</td>
+                <td><code>padding: 10px;</code></td>
+            </tr>
+            <tr>
+                <td><code>margin</code></td>
+                <td>Espacio externo</td>
+                <td><code>margin: 20px;</code></td>
+            </tr>
+            <tr>
+                <td><code>border</code></td>
+                <td>Borde</td>
+                <td><code>border: 1px solid black;</code></td>
+            </tr>
+            <tr>
+                <td><code>display</code></td>
+                <td>Tipo de caja</td>
+                <td><code>display: flex;</code></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SLIDE 10: BOX MODEL -->
+    <div class="slide">
+        <h2>Box Model (Modelo de Caja)</h2>
+        <p style="font-size: 1.3em; margin-bottom: 20px;">Todo elemento HTML es una caja con estas capas:</p>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <div style="display: inline-block; text-align: left;">
+                <div style="border: 5px solid #ffc107; padding: 20px; background: #fff3cd;">
+                    <strong>Margin (espacio externo)</strong>
+                    <div style="border: 5px solid #28a745; padding: 20px; margin-top: 10px; background: #d4edda;">
+                        <strong>Border (borde)</strong>
+                        <div style="border: 5px solid #2196F3; padding: 20px; margin-top: 10px; background: #e7f3ff;">
+                            <strong>Padding (espacio interno)</strong>
+                            <div style="background: white; padding: 20px; margin-top: 10px; border: 2px solid #666;">
+                                <strong>Content (contenido)</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-block">
+.caja {
+  width: 200px;        /* Ancho del contenido */
+  padding: 20px;       /* Espacio interno */
+  border: 2px solid;   /* Borde */
+  margin: 10px;        /* Espacio externo */
+}
+        </div>
+    </div>
+
+    <!-- SLIDE 11: FLEXBOX BÁSICO -->
+    <div class="slide">
+        <h2>Flexbox - Layout Moderno</h2>
+        <p style="font-size: 1.3em; margin-bottom: 20px;">Flexbox facilita alinear y distribuir elementos</p>
+        
+        <div class="code-block">
+/* Contenedor flex */
+.contenedor {
+  display: flex;
+  justify-content: center;  /* Horizontal: center, space-between, etc */
+  align-items: center;      /* Vertical: center, flex-start, flex-end */
+  gap: 10px;                /* Espacio entre items */
+}
+
+/* Dirección */
+.columna {
+  flex-direction: column;   /* Vertical en lugar de horizontal */
+}
+        </div>
+
+        <div class="tip">
+            <strong>💡 Tip:</strong> display: flex es tu mejor amigo para layouts. Centra cosas fácilmente!
+        </div>
+    </div>
+
+    <!-- SLIDE 12: CONECTAR JS CON HTML -->
+    <div class="slide">
+        <h2>🔗 Conectar JavaScript con HTML</h2>
+        
+        <h3>Tag &lt;script&gt;</h3>
+        <div class="code-block">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mi Página</title>
+</head>
+<body>
+  <h1>Hola Mundo</h1>
+  
+  <!-- Opción 1: Script interno -->
+  <script>
+    console.log("Hola desde JS!");
+  </script>
+  
+  <!-- Opción 2: Script externo (mejor) -->
+  <script src="script.js"></script>
+</body>
+</html>
+        </div>
+
+        <div class="emphasis">
+            <strong>⚠️ Importante:</strong> Poner el &lt;script&gt; al final del body, después del contenido
+        </div>
+    </div>
+
+    <!-- SLIDE 13: QUÉ ES EL DOM -->
+    <div class="slide">
+        <h2>🌳 El DOM (Document Object Model)</h2>
+        <p style="font-size: 1.3em; margin-bottom: 20px;">El DOM es una representación en forma de árbol de tu HTML</p>
+        
+        <div style="max-width: 700px; margin: 30px auto;">
+            <div class="code-block" style="font-size: 1em;">
+HTML:
+<div id="app">
+  <h1>Título</h1>
+  <p>Párrafo</p>
+</div>
+
+DOM (árbol):
+  document
+    └─ div#app
+        ├─ h1 ("Título")
+        └─ p ("Párrafo")
+            </div>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Concepto clave:</strong> JavaScript manipula el DOM, no el HTML directamente. Cada elemento HTML es un "nodo" en el árbol del DOM.
+        </div>
+    </div>
+
+    <!-- SLIDE 14: SELECCIONAR ELEMENTOS -->
+    <div class="slide">
+        <h2>Seleccionar Elementos del DOM</h2>
+        
+        <table>
+            <tr>
+                <th>Método</th>
+                <th>Selecciona</th>
+                <th>Retorna</th>
+            </tr>
+            <tr>
+                <td><code>getElementById()</code></td>
+                <td>Por id</td>
+                <td>Un elemento</td>
+            </tr>
+            <tr>
+                <td><code>querySelector()</code></td>
+                <td>Primer match (CSS selector)</td>
+                <td>Un elemento</td>
+            </tr>
+            <tr>
+                <td><code>querySelectorAll()</code></td>
+                <td>Todos los matches</td>
+                <td>NodeList (como array)</td>
+            </tr>
+            <tr>
+                <td><code>getElementsByClassName()</code></td>
+                <td>Por class</td>
+                <td>HTMLCollection</td>
+            </tr>
+            <tr>
+                <td><code>getElementsByTagName()</code></td>
+                <td>Por tag</td>
+                <td>HTMLCollection</td>
+            </tr>
+        </table>
+
+        <div class="tip">
+            <strong>💡 Recomendación:</strong> Usá querySelector y querySelectorAll (son los más flexibles)
+        </div>
+    </div>
+
+    <!-- SLIDE 15: EJEMPLOS DE SELECCIÓN -->
+    <div class="slide">
+        <h2>Ejemplos de Selección</h2>
+        
+        <div class="code-block">
+<!-- HTML -->
+<div id="contenedor">
+  <p class="texto">Párrafo 1</p>
+  <p class="texto">Párrafo 2</p>
+  <button>Click</button>
+</div>
+
+// JavaScript
+// Por ID
+const contenedor = document.getElementById("contenedor");
+
+// Por selector CSS (el primero)
+const primerTexto = document.querySelector(".texto");
+const boton = document.querySelector("button");
+
+// Todos los que coinciden
+const todosLosTextos = document.querySelectorAll(".texto");
+
+// Iterar sobre múltiples elementos
+todosLosTextos.forEach(texto => {
+  console.log(texto);
+});
+        </div>
+    </div>
+
+    <!-- SLIDE 16: MANIPULAR CONTENIDO -->
+    <div class="slide">
+        <h2>Manipular Contenido</h2>
+        
+        <h3>textContent vs innerHTML</h3>
+        <div class="code-block">
+const elemento = document.querySelector("#titulo");
+
+// textContent - solo texto (más seguro)
+elemento.textContent = "Nuevo título";
+
+// innerHTML - puede incluir HTML (cuidado con XSS)
+elemento.innerHTML = "<strong>Título en negrita</strong>";
+
+// Leer contenido
+console.log(elemento.textContent);
+        </div>
+
+        <div class="comparison">
+            <div class="comparison-box">
+                <h4>textContent</h4>
+                <ul style="font-size: 0.9em;">
+                    <li>Solo texto plano</li>
+                    <li>Más rápido</li>
+                    <li>Más seguro</li>
+                </ul>
+            </div>
+            <div class="comparison-box">
+                <h4>innerHTML</h4>
+                <ul style="font-size: 0.9em;">
+                    <li>Puede incluir HTML</li>
+                    <li>Más lento</li>
+                    <li>Riesgo de XSS</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 17: MODIFICAR ESTILOS -->
+    <div class="slide">
+        <h2>Modificar Estilos con JavaScript</h2>
+        
+        <div class="code-block">
+const elemento = document.querySelector("#miElemento");
+
+// Cambiar estilos individuales
+elemento.style.color = "red";
+elemento.style.backgroundColor = "yellow";
+elemento.style.fontSize = "24px";
+elemento.style.padding = "10px";
+
+// Agregar/quitar clases (MEJOR PRÁCTICA)
+elemento.classList.add("activo");
+elemento.classList.remove("inactivo");
+elemento.classList.toggle("destacado");  // Alterna (on/off)
+
+// Verificar si tiene una clase
+if (elemento.classList.contains("activo")) {
+  console.log("Está activo");
+}
+        </div>
+
+        <div class="tip">
+            <strong>💡 Mejor práctica:</strong> Usa classes en lugar de modificar style directamente. Es más mantenible.
+        </div>
+    </div>
+
+    <!-- SLIDE 18: CREAR Y AGREGAR ELEMENTOS -->
+    <div class="slide">
+        <h2>Crear y Agregar Elementos</h2>
+        
+        <div class="code-block">
+// Crear un nuevo elemento
+const nuevoParrafo = document.createElement("p");
+nuevoParrafo.textContent = "Soy un párrafo nuevo";
+nuevoParrafo.classList.add("texto-destacado");
+
+// Agregarlo al DOM
+const contenedor = document.querySelector("#contenedor");
+contenedor.appendChild(nuevoParrafo);  // Al final
+
+// Otras formas de agregar
+contenedor.prepend(nuevoParrafo);      // Al principio
+contenedor.append(nuevoParrafo);       // Al final (más moderno)
+
+// Insertar en posición específica
+contenedor.insertBefore(nuevoParrafo, otroElemento);
+
+// Eliminar elemento
+nuevoParrafo.remove();  // Se elimina a sí mismo
+contenedor.removeChild(nuevoParrafo);  // Forma vieja
+        </div>
+    </div>
+
+    <!-- SLIDE 19: ATRIBUTOS -->
+    <div class="slide">
+        <h2>Manipular Atributos</h2>
+        
+        <div class="code-block">
+const input = document.querySelector("input");
+const imagen = document.querySelector("img");
+
+// Obtener atributo
+const tipo = input.getAttribute("type");
+console.log(tipo);  // "text"
+
+// Cambiar atributo
+input.setAttribute("placeholder", "Escribe aquí...");
+imagen.setAttribute("src", "nueva-imagen.jpg");
+
+// Atributos directos (solo los estándar)
+input.value = "Nuevo valor";
+input.type = "password";
+imagen.src = "foto.jpg";
+
+// Verificar si existe atributo
+if (input.hasAttribute("required")) {
+  console.log("Es obligatorio");
+}
+
+// Eliminar atributo
+input.removeAttribute("disabled");
+        </div>
+    </div>
+
+    <!-- SLIDE 20: EVENTOS -->
+    <div class="slide">
+        <h2>🎯 Eventos - Hacer la Página Interactiva</h2>
+        <p style="font-size: 1.3em; margin-bottom: 20px;">Los eventos permiten responder a acciones del usuario</p>
+        
+        <h3>addEventListener</h3>
+        <div class="code-block">
+const boton = document.querySelector("button");
+
+// Escuchar evento
+boton.addEventListener("click", () => {
+  console.log("¡Botón clickeado!");
+});
+
+// Con función nombrada
+function manejarClick() {
+  console.log("Click!");
+}
+boton.addEventListener("click", manejarClick);
+
+// Múltiples listeners
+boton.addEventListener("click", () => console.log("Primero"));
+boton.addEventListener("click", () => console.log("Segundo"));
+        </div>
+    </div>
+
+    <!-- SLIDE 21: TIPOS DE EVENTOS -->
+    <div class="slide">
+        <h2>Eventos Comunes</h2>
+        
+        <table>
+            <tr>
+                <th>Evento</th>
+                <th>Cuándo se dispara</th>
+                <th>Elemento típico</th>
+            </tr>
+            <tr>
+                <td><code>click</code></td>
+                <td>Al hacer click</td>
+                <td>button, div, cualquiera</td>
+            </tr>
+            <tr>
+                <td><code>input</code></td>
+                <td>Al escribir (cada tecla)</td>
+                <td>input, textarea</td>
+            </tr>
+            <tr>
+                <td><code>change</code></td>
+                <td>Al cambiar y perder foco</td>
+                <td>input, select</td>
+            </tr>
+            <tr>
+                <td><code>submit</code></td>
+                <td>Al enviar formulario</td>
+                <td>form</td>
+            </tr>
+            <tr>
+                <td><code>keydown</code></td>
+                <td>Al presionar tecla</td>
+                <td>input, document</td>
+            </tr>
+            <tr>
+                <td><code>mouseover</code></td>
+                <td>Al pasar el mouse</td>
+                <td>cualquiera</td>
+            </tr>
+            <tr>
+                <td><code>mouseout</code></td>
+                <td>Al salir el mouse</td>
+                <td>cualquiera</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SLIDE 22: EVENT OBJECT -->
+    <div class="slide">
+        <h2>El Objeto Event</h2>
+        
+        <div class="code-block">
+const boton = document.querySelector("button");
+
+boton.addEventListener("click", (event) => {
+  console.log("Tipo de evento:", event.type);        // "click"
+  console.log("Elemento:", event.target);            // el botón
+  console.log("Posición X:", event.clientX);
+  console.log("Posición Y:", event.clientY);
+});
+
+// Prevenir comportamiento por defecto
+const formulario = document.querySelector("form");
+formulario.addEventListener("submit", (event) => {
+  event.preventDefault();  // No recarga la página
+  console.log("Formulario enviado");
+});
+
+// Detener propagación
+elemento.addEventListener("click", (event) => {
+  event.stopPropagation();  // No sube al padre
+});
+        </div>
+    </div>
+
+    <!-- SLIDE 23: EJEMPLO PRÁCTICO 1 -->
+    <div class="slide">
+        <h2>Ejemplo: Cambiar Color de Fondo</h2>
+        
+        <div class="code-block">
+<!-- HTML -->
+<button id="btn-color">Cambiar Color</button>
+
+// JavaScript
+const boton = document.getElementById("btn-color");
+
+boton.addEventListener("click", () => {
+  // Generar color aleatorio
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  
+  document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+});
+        </div>
+
+        <div class="demo-box">
+            <button id="demo-color">Cambiar Color de Fondo</button>
+        </div>
+    </div>
+
+    <!-- SLIDE 24: EJEMPLO PRÁCTICO 2 -->
+    <div class="slide">
+        <h2>Ejemplo: Contador</h2>
+        
+        <div class="code-block">
+<!-- HTML -->
+<div>
+  <h2 id="contador">0</h2>
+  <button id="btn-incrementar">+</button>
+  <button id="btn-decrementar">-</button>
+  <button id="btn-reset">Reset</button>
+</div>
+
+// JavaScript
+let cuenta = 0;
+const contadorElemento = document.getElementById("contador");
+
+document.getElementById("btn-incrementar").addEventListener("click", () => {
+  cuenta++;
+  contadorElemento.textContent = cuenta;
+});
+
+document.getElementById("btn-decrementar").addEventListener("click", () => {
+  cuenta--;
+  contadorElemento.textContent = cuenta;
+});
+
+document.getElementById("btn-reset").addEventListener("click", () => {
+  cuenta = 0;
+  contadorElemento.textContent = cuenta;
+});
+        </div>
+    </div>
+
+    <!-- SLIDE 25: EJEMPLO PRÁCTICO 3 -->
+    <div class="slide">
+        <h2>Ejemplo: Input en Tiempo Real</h2>
+        
+        <div class="code-block">
+<!-- HTML -->
+<input type="text" id="nombre-input" placeholder="Escribe tu nombre">
+<p>Hola, <span id="nombre-display">...</span></p>
+
+// JavaScript
+const input = document.getElementById("nombre-input");
+const display = document.getElementById("nombre-display");
+
+input.addEventListener("input", (event) => {
+  const valor = event.target.value;
+  display.textContent = valor || "...";
+});
+        </div>
+
+        <div class="demo-box">
+            <input type="text" id="demo-input" placeholder="Escribe tu nombre">
+            <p>Hola, <span id="demo-display">...</span></p>
+        </div>
+    </div>
+
+    <!-- SLIDE 26: PRÁCTICA -->
+    <div class="slide">
+        <h2>🎯 ¡A practicar!</h2>
+        <p style="font-size: 1.4em; margin: 30px 0;">Ahora es tu turno de crear páginas interactivas</p>
+        <ul style="font-size: 1.2em;">
+            <li>Seleccionar elementos del DOM</li>
+            <li>Modificar contenido y estilos</li>
+            <li>Crear y agregar elementos</li>
+            <li>Responder a eventos</li>
+            <li>Combinar todo lo aprendido</li>
+        </ul>
+        <div class="emphasis" style="margin-top: 40px;">
+            <strong>Ejercicios en:</strong> clase3_ejercicios.html
+        </div>
+    </div>
+
+    <!-- SLIDE 27: RECAP -->
+    <div class="slide">
+        <h2>📝 Recap de la Clase 3</h2>
+        <ul>
+            <li><strong>HTML:</strong> Estructura (tags, atributos, id, class)</li>
+            <li><strong>CSS:</strong> Estilos (selectores, propiedades, flexbox)</li>
+            <li><strong>DOM:</strong> Representación en árbol del HTML</li>
+            <li><strong>Seleccionar:</strong> querySelector, querySelectorAll</li>
+            <li><strong>Manipular:</strong> textContent, innerHTML, style, classList</li>
+            <li><strong>Crear:</strong> createElement, appendChild</li>
+            <li><strong>Eventos:</strong> addEventListener (click, input, etc)</li>
+            <li><strong>Event object:</strong> target, preventDefault()</li>
+        </ul>
+        <div class="tip" style="margin-top: 20px;">
+            <strong>🎉 Ahora pueden:</strong> Crear páginas web interactivas completas!
+        </div>
+    </div>
+
+    <div class="navigation">
+        Atrás ← → Adelante
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.style.display = 'none');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].style.display = 'flex';
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') showSlide(currentSlide + 1);
+            if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+        });
+        
+        showSlide(0);
+
+        // Demos interactivos
+        document.getElementById('demo-color')?.addEventListener('click', () => {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            document.body.style.background = `rgb(${r}, ${g}, ${b})`;
+        });
+
+        document.getElementById('demo-input')?.addEventListener('input', (e) => {
+            const display = document.getElementById('demo-display');
+            display.textContent = e.target.value || '...';
+        });
+    </script>
+</body>
+</html>

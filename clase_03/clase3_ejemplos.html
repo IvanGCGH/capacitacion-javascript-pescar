@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clase 3 - Ejemplos en Vivo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+
+    .ejemplo {
+      background: white;
+      padding: 30px;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #001E60;
+      border-bottom: 3px solid #001E60;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #001E60;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background: #001E60;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    button:hover {
+      background: #003080;
+    }
+
+    input {
+      padding: 10px;
+      border: 2px solid #001E60;
+      border-radius: 5px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    .caja {
+      background: #e7f3ff;
+      padding: 20px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    .destacado {
+      background: yellow;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #lista-dinamica li {
+      padding: 10px;
+      margin: 5px 0;
+      background: #f8f9fa;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #lista-dinamica button {
+      background: #dc3545;
+      padding: 5px 15px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Clase 3 - Ejemplos en Vivo de DOM Manipulation</h1>
+
+  <!-- EJEMPLO 1: Seleccionar y Cambiar Texto -->
+  <div class="ejemplo">
+    <h2>1. Seleccionar y Cambiar Texto</h2>
+    <h3 id="titulo">Título Original</h3>
+    <button onclick="cambiarTitulo()">Cambiar Título</button>
+  </div>
+
+  <!-- EJEMPLO 2: Cambiar Estilos -->
+  <div class="ejemplo">
+    <h2>2. Cambiar Estilos (color, background)</h2>
+    <div id="caja-color" class="caja">Esta es una caja</div>
+    <button onclick="cambiarColorFondo()">Fondo Rojo</button>
+    <button onclick="cambiarColorTexto()">Texto Azul</button>
+    <button onclick="resetearCaja()">Reset</button>
+  </div>
+
+  <!-- EJEMPLO 3: classList (add, remove, toggle) -->
+  <div class="ejemplo">
+    <h2>3. Trabajar con Classes (classList)</h2>
+    <p id="parrafo-toggle">Este párrafo puede destacarse</p>
+    <button onclick="toggleDestacar()">Toggle Destacado</button>
+  </div>
+
+  <!-- EJEMPLO 4: Mostrar/Ocultar -->
+  <div class="ejemplo">
+    <h2>4. Mostrar / Ocultar Elementos</h2>
+    <p id="parrafo-mostrar">Este texto puede ocultarse</p>
+    <button onclick="mostrar()">Mostrar</button>
+    <button onclick="ocultar()">Ocultar</button>
+  </div>
+
+  <!-- EJEMPLO 5: Input en Tiempo Real -->
+  <div class="ejemplo">
+    <h2>5. Input en Tiempo Real</h2>
+    <input type="text" id="input-nombre" placeholder="Escribe tu nombre">
+    <p>Hola, <span id="nombre-mostrar">...</span></p>
+  </div>
+
+  <!-- EJEMPLO 6: Contador -->
+  <div class="ejemplo">
+    <h2>6. Contador</h2>
+    <h3 id="contador" style="font-size: 48px; text-align: center;">0</h3>
+    <div style="text-align: center;">
+      <button onclick="incrementar()">+</button>
+      <button onclick="decrementar()">-</button>
+      <button onclick="resetContador()">Reset</button>
+    </div>
+  </div>
+
+  <!-- EJEMPLO 7: Crear Elementos Dinámicamente -->
+  <div class="ejemplo">
+    <h2>7. Crear y Agregar Elementos</h2>
+    <input type="text" id="input-item" placeholder="Nuevo item">
+    <button onclick="agregarItem()">Agregar a la Lista</button>
+    <ul id="lista-dinamica"></ul>
+  </div>
+
+  <!-- EJEMPLO 8: Cambiar Atributos -->
+  <div class="ejemplo">
+    <h2>8. Cambiar Atributos (src, href, etc)</h2>
+    <img id="imagen" src="https://via.placeholder.com/200x200/001E60/FFFFFF?text=Imagen+1" alt="Imagen">
+    <br>
+    <button onclick="cambiarImagen(1)">Imagen 1</button>
+    <button onclick="cambiarImagen(2)">Imagen 2</button>
+    <button onclick="cambiarImagen(3)">Imagen 3</button>
+  </div>
+
+  <!-- EJEMPLO 9: Formulario con preventDefault -->
+  <div class="ejemplo">
+    <h2>9. Formulario (preventDefault)</h2>
+    <form id="formulario">
+      <input type="text" id="input-email" placeholder="Tu email" required>
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="mensaje-form"></p>
+  </div>
+
+  <!-- EJEMPLO 10: Event Object -->
+  <div class="ejemplo">
+    <h2>10. Event Object (información del evento)</h2>
+    <button id="btn-evento">Click para ver info del evento</button>
+    <p id="info-evento"></p>
+  </div>
+
+  <script>
+    console.log("=== CLASE 3: DOM MANIPULATION EXAMPLES ===");
+
+    // ==========================================
+    // EJEMPLO 1: Seleccionar y Cambiar Texto
+    // ==========================================
+    function cambiarTitulo() {
+      const titulo = document.getElementById("titulo");
+      titulo.textContent = "¡Título Modificado con JavaScript!";
+      console.log("Título cambiado");
+    }
+
+    // ==========================================
+    // EJEMPLO 2: Cambiar Estilos
+    // ==========================================
+    function cambiarColorFondo() {
+      const caja = document.getElementById("caja-color");
+      caja.style.backgroundColor = "red";
+      caja.style.color = "white";
+    }
+
+    function cambiarColorTexto() {
+      const caja = document.getElementById("caja-color");
+      caja.style.color = "blue";
+    }
+
+    function resetearCaja() {
+      const caja = document.getElementById("caja-color");
+      caja.style.backgroundColor = "";
+      caja.style.color = "";
+    }
+
+    // ==========================================
+    // EJEMPLO 3: classList
+    // ==========================================
+    function toggleDestacar() {
+      const parrafo = document.getElementById("parrafo-toggle");
+      parrafo.classList.toggle("destacado");
+      
+      if (parrafo.classList.contains("destacado")) {
+        console.log("Párrafo destacado");
+      } else {
+        console.log("Párrafo normal");
+      }
+    }
+
+    // ==========================================
+    // EJEMPLO 4: Mostrar/Ocultar
+    // ==========================================
+    function mostrar() {
+      const parrafo = document.getElementById("parrafo-mostrar");
+      parrafo.style.display = "block";
+    }
+
+    function ocultar() {
+      const parrafo = document.getElementById("parrafo-mostrar");
+      parrafo.style.display = "none";
+    }
+
+    // ==========================================
+    // EJEMPLO 5: Input en Tiempo Real
+    // ==========================================
+    const inputNombre = document.getElementById("input-nombre");
+    const nombreMostrar = document.getElementById("nombre-mostrar");
+
+    inputNombre.addEventListener("input", (event) => {
+      const valor = event.target.value;
+      nombreMostrar.textContent = valor || "...";
+    });
+
+    // ==========================================
+    // EJEMPLO 6: Contador
+    // ==========================================
+    let cuenta = 0;
+    const contadorElemento = document.getElementById("contador");
+
+    function incrementar() {
+      cuenta++;
+      contadorElemento.textContent = cuenta;
+    }
+
+    function decrementar() {
+      cuenta--;
+      contadorElemento.textContent = cuenta;
+    }
+
+    function resetContador() {
+      cuenta = 0;
+      contadorElemento.textContent = cuenta;
+    }
+
+    // ==========================================
+    // EJEMPLO 7: Crear Elementos Dinámicamente
+    // ==========================================
+    function agregarItem() {
+      const input = document.getElementById("input-item");
+      const lista = document.getElementById("lista-dinamica");
+      const texto = input.value.trim();
+
+      if (texto === "") {
+        alert("Escribe algo primero!");
+        return;
+      }
+
+      // Crear elementos
+      const li = document.createElement("li");
+      const span = document.createElement("span");
+      const botonEliminar = document.createElement("button");
+
+      // Configurar contenido
+      span.textContent = texto;
+      botonEliminar.textContent = "×";
+      botonEliminar.onclick = function() {
+        li.remove();
+      };
+
+      // Agregar al DOM
+      li.appendChild(span);
+      li.appendChild(botonEliminar);
+      lista.appendChild(li);
+
+      // Limpiar input
+      input.value = "";
+      input.focus();
+    }
+
+    // También permitir agregar con Enter
+    document.getElementById("input-item").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        agregarItem();
+      }
+    });
+
+    // ==========================================
+    // EJEMPLO 8: Cambiar Atributos
+    // ==========================================
+    function cambiarImagen(numero) {
+      const imagen = document.getElementById("imagen");
+      const colores = ["001E60", "FF0000", "00FF00"];
+      const color = colores[numero - 1];
+      imagen.src = `https://via.placeholder.com/200x200/${color}/FFFFFF?text=Imagen+${numero}`;
+      imagen.alt = `Imagen ${numero}`;
+    }
+
+    // ==========================================
+    // EJEMPLO 9: Formulario con preventDefault
+    // ==========================================
+    const formulario = document.getElementById("formulario");
+    const mensajeForm = document.getElementById("mensaje-form");
+
+    formulario.addEventListener("submit", (event) => {
+      event.preventDefault();  // Prevenir recarga de página
+      
+      const email = document.getElementById("input-email").value;
+      
+      // Validación simple
+      if (email.includes("@")) {
+        mensajeForm.textContent = `✅ Formulario enviado con email: ${email}`;
+        mensajeForm.style.color = "green";
+        formulario.reset();
+      } else {
+        mensajeForm.textContent = "❌ Email inválido";
+        mensajeForm.style.color = "red";
+      }
+    });
+
+    // ==========================================
+    // EJEMPLO 10: Event Object
+    // ==========================================
+    const btnEvento = document.getElementById("btn-evento");
+    const infoEvento = document.getElementById("info-evento");
+
+    btnEvento.addEventListener("click", (event) => {
+      const info = `
+        Tipo: ${event.type}<br>
+        Target: ${event.target.tagName}<br>
+        ClientX: ${event.clientX}<br>
+        ClientY: ${event.clientY}<br>
+        Timestamp: ${event.timeStamp}
+      `;
+      infoEvento.innerHTML = info;
+      console.log("Event completo:", event);
+    });
+
+    // ==========================================
+    // EJEMPLOS ADICIONALES EN CONSOLA
+    // ==========================================
+    console.log("\n--- Selección de Elementos ---");
+    console.log("getElementById:", document.getElementById("titulo"));
+    console.log("querySelector:", document.querySelector(".caja"));
+    console.log("querySelectorAll:", document.querySelectorAll("button"));
+
+    console.log("\n--- Propiedades útiles ---");
+    const body = document.body;
+    console.log("body.children:", body.children);
+    console.log("body.childElementCount:", body.childElementCount);
+
+    console.log("\n=== Abrí la consola para ver más ejemplos ===");
+  </script>
+</body>
+</html>
