@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consigna - Ejercicio Práctico Clase 4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #001E60 0%, #003080 100%);
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #001E60;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .objetivo {
+            background: #e7f3ff;
+            border-left: 5px solid #2196F3;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .objetivo h2 {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+
+        .seccion {
+            margin: 30px 0;
+        }
+
+        .seccion h2 {
+            color: #001E60;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #001E60;
+            padding-bottom: 10px;
+        }
+
+        .requisitos {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .requisitos h3 {
+            color: #001E60;
+            margin-bottom: 15px;
+        }
+
+        .requisitos ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requisitos li {
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .requisitos li::before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .bonus {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .bonus h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .tips {
+            background: #e8f5e9;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .tips h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .tips ul {
+            margin-left: 20px;
+        }
+
+        .tips li {
+            margin: 8px 0;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .importante {
+            background: #f8d7da;
+            border-left: 5px solid #dc3545;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .importante h3 {
+            color: #721c24;
+            margin-bottom: 10px;
+        }
+
+        .tiempo {
+            text-align: center;
+            background: #001E60;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 1.2em;
+        }
+
+        .estructura-sugerida {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .estructura-sugerida pre {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+
+        .artech-logo-container {
+            text-align: end;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="artech-logo-container">
+            <img src="./artech-logo.png" alt="Artech Logo" style="width: 150px; height: 30px;">
+        </div>
+
+        <div class="header">
+            <h1>🎯 Ejercicio Práctico</h1>
+            <p class="subtitle">Clase 4 - Cards Dinámicas con Formulario</p>
+        </div>
+
+        <div class="objetivo">
+            <h2>🎓 Objetivo del Ejercicio</h2>
+            <p>Crear una aplicación web que permita agregar personas mediante un formulario y mostrarlas como cards visualmente atractivas usando Flexbox.</p>
+        </div>
+
+        <div class="seccion">
+            <h2>📋 Requisitos Mínimos</h2>
+            
+            <div class="requisitos">
+                <h3>1. Formulario de Entrada</h3>
+                <ul>
+                    <li>Input para el <strong>nombre</strong> de la persona</li>
+                    <li>Input para la <strong>edad</strong> (tipo number)</li>
+                    <li>Input para la <strong>profesión</strong></li>
+                    <li>Textarea para la <strong>descripción</strong></li>
+                    <li>Input para la <strong>URL de la foto</strong></li>
+                    <li>Botón para <strong>agregar</strong> la persona</li>
+                </ul>
+            </div>
+
+            <div class="requisitos">
+                <h3>2. Contenedor de Cards</h3>
+                <ul>
+                    <li>Debe usar <strong>Flexbox</strong> para organizar las cards</li>
+                    <li>Las cards deben acomodarse automáticamente según el espacio disponible</li>
+                    <li>Debe haber espacio (gap) entre las cards</li>
+                </ul>
+            </div>
+
+            <div class="requisitos">
+                <h3>3. Diseño de las Cards</h3>
+                <ul>
+                    <li>Debe tener una <strong>imagen</strong> en la parte superior</li>
+                    <li>Debe mostrar el <strong>nombre</strong> destacado</li>
+                    <li>Debe mostrar la <strong>edad</strong> y <strong>profesión</strong> (puede ser con badges/etiquetas)</li>
+                    <li>Debe incluir la <strong>descripción</strong></li>
+                    <li>Diseño atractivo con colores, bordes redondeados, sombras, etc.</li>
+                </ul>
+            </div>
+
+            <div class="requisitos">
+                <h3>4. Funcionalidad JavaScript</h3>
+                <ul>
+                    <li>Al hacer click en "Agregar", debe crear una nueva card con los datos del formulario</li>
+                    <li>Validar que los campos no estén vacíos</li>
+                    <li>Limpiar el formulario después de agregar una persona</li>
+                    <li>Las cards deben crearse dinámicamente con JavaScript</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bonus">
+            <h3>Bonus (Opcional)</h3>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Agregar un efecto hover a las cards (que se eleven o cambien de color)</li>
+                <li>Agregar un botón para eliminar cada card</li>
+                <li>Hacer que el formulario se pueda enviar con Enter</li>
+                <li>Agregar animaciones al crear las cards</li>
+            </ul>
+        </div>
+
+        <div class="seccion">
+            <h2>Tips y Consejos</h2>
+
+            <div class="tips">
+                <h3>Para el JavaScript:</h3>
+                <ul>
+                    <li>Seleccioná todos los inputs usando <code>document.getElementById()</code></li>
+                    <li>Creá una función que se ejecute al hacer click en el botón</li>
+                    <li>Dentro de la función: obtené los valores, validá, creá la card y limpiá el form</li>
+                    <li>Para crear la card, usá <code>document.createElement()</code> y <code>innerHTML</code></li>
+                    <li>No olvides usar <code>appendChild()</code> para agregar la card al contenedor</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="seccion">
+            <h2>Checklist Final</h2>
+            <div class="requisitos">
+                <ul>
+                    <li>¿El formulario tiene todos los campos necesarios?</li>
+                    <li>¿Las cards se crean al hacer click en el botón?</li>
+                    <li>¿Las cards muestran toda la información correctamente?</li>
+                    <li>¿El diseño usa Flexbox y se ve bien?</li>
+                    <li>¿Se valida que los campos no estén vacíos?</li>
+                    <li>¿El formulario se limpia después de agregar?</li>
+                    <li>¿El código está ordenado y comentado?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

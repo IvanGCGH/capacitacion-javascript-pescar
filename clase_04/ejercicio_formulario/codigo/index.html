@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear cards de robots</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🤖 Creador de cards de robots</h1>
+
+      <!-- Contenedor del formulario -->
+      <div class="formulario-container">
+        <h2>Agregar Nuevo Robot</h2>
+
+        <!-- Formulario -->
+        <form id="formulario">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre del Robot *</label>
+              <input
+                type="text"
+                id="nombre"
+                placeholder="Ej: Robot Alpha"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="edad">Edad *</label>
+              <input
+                type="number"
+                id="edad"
+                placeholder="Ej: 25"
+                min="1"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="profesion">Profesión *</label>
+            <input
+              type="text"
+              id="profesion"
+              placeholder="Ej: Desarrollador Full Stack"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea
+              id="descripcion"
+              placeholder="Escribe una breve descripción del robot..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="foto">URL de la Foto (opcional)</label>
+            <input
+              type="text"
+              id="foto"
+              placeholder="Deja vacío para generar un robot aleatorio"
+            />
+          </div>
+
+          <button type="button" class="btn-agregar" onclick="agregarRobot()">
+            Agregar Robot
+          </button>
+        </form>
+      </div>
+
+      <!-- Contenedor de cards -->
+      <div class="cards-container" id="cards-container">
+        <!-- Acá van a ir las cards que se crearan desde Javascript -->
+      </div>
+    </div>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>

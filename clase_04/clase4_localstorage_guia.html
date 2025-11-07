@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage - Implementación Paso a Paso (Robots)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #001E60 0%, #003080 100%);
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #001E60;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .seccion {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .seccion h2 {
+            color: #001E60;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #001E60;
+            padding-bottom: 10px;
+        }
+
+        .concepto {
+            background: #e7f3ff;
+            border-left: 5px solid #2196F3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .concepto h3 {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+
+        .ejemplo {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .ejemplo h3 {
+            color: #001E60;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+            font-size: 0.95em;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        pre code {
+            color: #333;
+        }
+
+        .paso {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .paso h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .diferencia {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .diferencia h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #001E60;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .importante {
+            background: #f8d7da;
+            border-left: 5px solid #dc3545;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .importante h3 {
+            color: #721c24;
+            margin-bottom: 10px;
+        }
+
+        .artech-logo-container {
+            text-align: end;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="artech-logo-container">
+            <img src="./artech-logo.png" alt="Artech Logo" style="width: 150px; height: 30px;">
+        </div>
+
+        <h1>💾 LocalStorage - Persistencia de Datos (Robots)</h1>
+
+        <!-- CONCEPTO PRINCIPAL -->
+        <div class="concepto">
+            <h3>¿Qué es localStorage?</h3>
+            <p><strong>localStorage</strong> es una forma de guardar datos en el navegador que persisten incluso después de cerrar la página o el navegador.</p>
+            <p style="margin-top: 10px;">Es como una "memoria" del navegador donde podemos guardar información que queremos que el usuario conserve entre sesiones.</p>
+        </div>
+
+        <!-- DIFERENCIA CON SESSIONSTORAGE -->
+        <div class="diferencia">
+            <h3>localStorage vs sessionStorage</h3>
+            <table>
+                <tr>
+                    <th>Característica</th>
+                    <th>localStorage</th>
+                    <th>sessionStorage</th>
+                </tr>
+                <tr>
+                    <td><strong>Duración</strong></td>
+                    <td>Permanente (hasta que se borre manualmente)</td>
+                    <td>Dura solo mientras la pestaña está abierta</td>
+                </tr>
+                <tr>
+                    <td><strong>Compartido</strong></td>
+                    <td>Entre todas las pestañas del mismo sitio</td>
+                    <td>Solo en la pestaña actual</td>
+                </tr>
+                <tr>
+                    <td><strong>Uso común</strong></td>
+                    <td>Preferencias, datos de usuario, carritos</td>
+                    <td>Datos temporales de formularios</td>
+                </tr>
+            </table>
+            <p style="margin-top: 15px;"><strong>Para nuestro proyecto de cards,</strong> vamos a usar <code>localStorage</code> para que los robots agregados se guarden incluso si cerramos el navegador.</p>
+        </div>
+
+        <!-- MÉTODOS BÁSICOS -->
+        <div class="seccion">
+            <h2>🛠️ Métodos Básicos de localStorage</h2>
+
+            <div class="ejemplo">
+                <h3>1. Guardar un dato</h3>
+                <pre><code>// Guardar un string
+localStorage.setItem('nombre', 'Juan');
+
+// Guardar un número (se convierte a string automáticamente)
+localStorage.setItem('edad', 25);</code></pre>
+            </div>
+
+            <div class="ejemplo">
+                <h3>2. Leer un dato</h3>
+                <pre><code>// Leer el dato guardado
+const nombre = localStorage.getItem('nombre');
+console.log(nombre); // "Juan"
+
+// Si el dato no existe, devuelve null
+const apellido = localStorage.getItem('apellido');
+console.log(apellido); // null</code></pre>
+            </div>
+
+            <div class="ejemplo">
+                <h3>3. Eliminar un dato</h3>
+                <pre><code>// Eliminar un dato específico
+localStorage.removeItem('nombre');
+
+// Eliminar TODOS los datos
+localStorage.clear();</code></pre>
+            </div>
+
+            <div class="importante">
+                <h3>Importante sobre los datos</h3>
+                <p><strong>localStorage solo guarda strings (texto).</strong></p>
+                <p style="margin-top: 10px;">Si queremos guardar objetos o arrays, tenemos que convertirlos a JSON.</p>
+            </div>
+        </div>
+
+        <!-- TRABAJAR CON JSON -->
+        <div class="seccion">
+            <h2>📦 Trabajar con Objetos y Arrays (JSON)</h2>
+
+            <div class="concepto">
+                <h3>¿Qué es JSON?</h3>
+                <p><strong>JSON</strong> (JavaScript Object Notation) es un formato de texto que representa objetos y arrays de JavaScript.</p>
+                <p style="margin-top: 10px;">Usamos JSON para convertir nuestros datos a texto (para guardar) y de texto a datos (para leer).</p>
+            </div>
+
+            <div class="ejemplo">
+                <h3>Guardar un objeto</h3>
+                <pre><code>// Tenemos un objeto
+const robot = {
+    nombre: 'Robot 1',
+    edad: 28,
+    profesion: 'Frontend Developer'
+};
+
+// 1. Convertir a JSON (string)
+const robotJSON = JSON.stringify(robot);
+
+// 2. Guardar en localStorage
+localStorage.setItem('robot', robotJSON);
+
+// Todo en una línea:
+localStorage.setItem('robot', JSON.stringify(robot));</code></pre>
+            </div>
+
+            <div class="ejemplo">
+                <h3>Leer un objeto</h3>
+                <pre><code>// 1. Leer el string de localStorage
+const robotJSON = localStorage.getItem('robot');
+
+// 2. Convertir de JSON a objeto
+const robot = JSON.parse(robotJSON);
+
+// 3. Usar el objeto normalmente
+console.log(robot.nombre); // "Robot 1"
+
+// Todo en una línea:
+const robot = JSON.parse(localStorage.getItem('robot'));</code></pre>
+            </div>
+
+            <div class="ejemplo">
+                <h3>Guardar un array de objetos</h3>
+                <pre><code>// Array de robots
+const robots = [
+    { nombre: 'Robot 1', edad: 28 },
+    { nombre: 'Robot 2', edad: 32 },
+    { nombre: 'Robot 3', edad: 25 }
+];
+
+// Guardar el array completo
+localStorage.setItem('robots', JSON.stringify(robots));
+
+// Leer el array
+const robotsGuardados = JSON.parse(localStorage.getItem('robots'));
+console.log(robotsGuardados); // Array con los 3 robots</code></pre>
+            </div>
+        </div>
+
+        <!-- IMPLEMENTACIÓN PASO A PASO -->
+        <div class="seccion">
+            <h2>🔧 Implementación en nuestro proyecto de Cards</h2>
+
+            <div class="paso">
+                <h3>Paso 1: Declarar array global de robots</h3>
+                <p>Al inicio del script, antes de cualquier función:</p>
+                <pre><code>// Array que va a contener todos los robots
+let robots = [];
+
+// Intentar cargar robots guardados al iniciar
+function cargarRobotsGuardados() {
+    const robotsGuardados = localStorage.getItem('robots');
+    
+    if (robotsGuardados) {
+        // Si hay datos guardados, convertirlos y usarlos
+        robots = JSON.parse(robotsGuardados);
+        
+        // Crear cards para cada robot guardado
+        robots.forEach(robot => crearCard(robot));
+    }
+}
+
+// Llamar esta función cuando carga la página
+cargarRobotsGuardados();</code></pre>
+            </div>
+
+            <div class="paso">
+                <h3>Paso 2: Guardar cuando se agrega un robot</h3>
+                <p>Modificar la función agregarRobot() para guardar en localStorage:</p>
+                <pre><code>function agregarRobot() {
+    // 1. Obtener los valores del formulario
+    const nombre = document.getElementById('nombre').value;
+    const edad = document.getElementById('edad').value;
+    const profesion = document.getElementById('profesion').value;
+    const descripcion = document.getElementById('descripcion').value;
+    const foto = document.getElementById('foto').value;
+    
+    // 2. Validar
+    if (nombre === '' || edad === '' || profesion === '') {
+        alert('Por favor completá todos los campos obligatorios');
+        return;
+    }
+    
+    // 3. Crear objeto robot
+    const robot = {
+        nombre: nombre,
+        edad: edad,
+        profesion: profesion,
+        descripcion: descripcion,
+        foto: foto || 'https://robohash.org/default.png'
+    };
+    
+    // 4. Agregar al array
+    robots.push(robot);
+    
+    // 5. GUARDAR EN LOCALSTORAGE
+    localStorage.setItem('robots', JSON.stringify(robots));
+    
+    // 6. Crear la card visualmente
+    crearCard(robot);
+    
+    // 7. Limpiar formulario
+    document.getElementById('formulario').reset();
+}</code></pre>
+            </div>
+
+            <div class="paso">
+                <h3>Paso 3: (Opcional) Eliminar robots</h3>
+                <p>Si agregaron un botón para eliminar cards, también hay que actualizar localStorage:</p>
+                <pre><code>function eliminarRobot(index) {
+    // 1. Eliminar del array
+    robots.splice(index, 1);
+    
+    // 2. ACTUALIZAR LOCALSTORAGE
+    localStorage.setItem('robots', JSON.stringify(robots));
+    
+    // 3. Volver a renderizar todas las cards
+    const contenedor = document.getElementById('cardsContainer');
+    contenedor.innerHTML = ''; // Limpiar
+    
+    robots.forEach(robot => crearCard(robot));
+}</code></pre>
+            </div>
+
+            <div class="paso">
+                <h3>Paso 4: (Opcional) Botón para limpiar todo</h3>
+                <pre><code>function limpiarTodo() {
+    if (confirm('¿Estás seguro de que querés eliminar todos los robots?')) {
+        // 1. Limpiar array
+        robots = [];
+        
+        // 2. Limpiar localStorage
+        localStorage.removeItem('robots');
+        
+        // 3. Limpiar cards visualmente
+        document.getElementById('cardsContainer').innerHTML = '';
+        
+        alert('Todos los robots fueron eliminados');
+    }
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- CÓDIGO COMPLETO -->
+        <div class="seccion">
+            <h2>📝 Código Completo con localStorage</h2>
+            <div class="ejemplo">
+                <pre><code>&lt;script&gt;
+    // ARRAY GLOBAL DE ROBOTS
+    let robots = [];
+
+    // CARGAR DATOS AL INICIAR
+    function cargarRobotsGuardados() {
+        const robotsGuardados = localStorage.getItem('robots');
+        
+        if (robotsGuardados) {
+            robots = JSON.parse(robotsGuardados);
+            robots.forEach(robot => crearCard(robot));
+        }
+    }
+
+    // FUNCIÓN PARA CREAR CARD
+    function crearCard(robot) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        
+        card.innerHTML = \`
+            &lt;img class="card-image" src="\${robot.foto}" alt="\${robot.nombre}"&gt;
+            &lt;div class="card-content"&gt;
+                &lt;h2 class="card-title"&gt;\${robot.nombre}&lt;/h2&gt;
+                &lt;div class="card-info"&gt;
+                    &lt;span class="card-badge edad"&gt;\${robot.edad} años&lt;/span&gt;
+                    &lt;span class="card-badge profesion"&gt;\${robot.profesion}&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;p class="card-description"&gt;\${robot.descripcion}&lt;/p&gt;
+            &lt;/div&gt;
+        \`;
+        
+        document.getElementById('cardsContainer').appendChild(card);
+    }
+
+    // FUNCIÓN PARA AGREGAR ROBOT
+    function agregarRobot() {
+        const nombre = document.getElementById('nombre').value;
+        const edad = document.getElementById('edad').value;
+        const profesion = document.getElementById('profesion').value;
+        const descripcion = document.getElementById('descripcion').value;
+        const foto = document.getElementById('foto').value;
+        
+        if (nombre === '' || edad === '' || profesion === '') {
+            alert('Por favor completá todos los campos obligatorios');
+            return;
+        }
+        
+        const robot = {
+            nombre: nombre,
+            edad: edad,
+            profesion: profesion,
+            descripcion: descripcion,
+            foto: foto || 'https://robohash.org/default.png'
+        };
+        
+        robots.push(robot);
+        localStorage.setItem('robots', JSON.stringify(robots));
+        
+        crearCard(robot);
+        document.getElementById('formulario').reset();
+    }
+
+    // FUNCIÓN PARA LIMPIAR TODO
+    function limpiarTodo() {
+        if (confirm('¿Estás seguro?')) {
+            robots = [];
+            localStorage.removeItem('robots');
+            document.getElementById('cardsContainer').innerHTML = '';
+        }
+    }
+
+    // CARGAR AL INICIAR LA PÁGINA
+    cargarRobotsGuardados();
+&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- TIPS FINALES -->
+        <div class="importante">
+            <h3>A tener en cuenta:</h3>
+            <ul>
+                <li>localStorage tiene un límite de ~5-10MB dependiendo del navegador</li>
+                <li>Los datos se guardan por dominio (cada sitio web tiene su propio localStorage)</li>
+                <li>Podés ver los datos guardados en las DevTools del navegador (F12 → Application → Local Storage)</li>
+                <li>NUNCA guardes información sensible (contraseñas, datos bancarios) en localStorage</li>
+                <li>Si el usuario borra los datos del navegador, se pierde el localStorage</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
